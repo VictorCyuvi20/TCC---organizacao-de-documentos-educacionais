@@ -1,5 +1,7 @@
+
 from flask import Flask, render_template, redirect, request, session
 from model import control_user
+
 app = Flask(__name__)
 
 # CRIANDO CHAVE SECRETA
@@ -13,6 +15,7 @@ def index():
 @app.route("/logon")
 def logon():
     return render_template("pages/logon.html")
+
 
 @app.route("/post/logon", methods=["POST"])
 def cadastro_user():
@@ -29,6 +32,14 @@ def cadastro_user():
     else:
         return redirect("/logon")
 
+
+@app.route("/api/login", methods=["POST"])
+def efetuar_login():
+    email = request.form.get("email")
+    senha = request.form.get("password")
+
+    Control.login_user(email, senha)
+    return redirect("/")
 # [ --------- FIM DAS ROTAS --------- ] #
 
 if __name__ == "__main__":

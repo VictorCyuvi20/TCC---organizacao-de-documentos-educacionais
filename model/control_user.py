@@ -2,6 +2,7 @@ from DATA.conexao import Conexao
 from hashlib import sha256
 from flask import session, flash
 
+
 class Usuario:
 
     @staticmethod
@@ -59,3 +60,4 @@ class Usuario:
                     cx_db.close()
             except:
                 pass
+
