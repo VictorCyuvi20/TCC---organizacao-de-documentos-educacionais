@@ -1,0 +1,52 @@
+{% extends "bases/secondary.html" %}
+{% block title %}Iniciar Sessão{% endblock %}
+
+{% block sectiontitle %}
+Olá,
+{% endblock %}
+
+{% block subtitle %}
+Vamos cadastrar sua conta
+{% endblock %}
+
+{% block content %}
+
+<form>
+    <div class="row">
+        <div class="input-field col s12">
+            <input value="" id="name" name="name" type="text" class="validate">
+            <label class="active" for="name">Nome</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12">
+            <input value="" id="email" name="email" type="text" class="validate">
+            <label class="active" for="email">E-mail</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12">
+            <input value="" id="time" name="time" type="time" class="validate">
+            <label class="active" for="time">Horário de Trabalho</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12">
+            <input value="" id="password" name="password" type="password" class="validate">
+            <label class="active" for="password">Senha</label>
+            
+        </div>
+        <a href="/" class="link col s12 grey-text text-darken-1">Já estou cadastrado (acessar conta)</a>
+    </div>
+
+    <div class="row">
+        <button class="btn waves-effect grey darken-1 col s12" type="submit" name="action">
+            Cadastrar
+        </button>
+    </div>
+</form>
+
+{% endblock %}

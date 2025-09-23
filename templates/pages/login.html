@@ -1,0 +1,39 @@
+{% extends "bases/secondary.html" %}
+{% block title %}Iniciar Sessão{% endblock %}
+
+{% block sectiontitle %}
+Bem-vindo(a) de volta!
+{% endblock %}
+
+{% block subtitle %}
+Vamos acessar sua conta
+{% endblock %}
+
+{% block content %}
+
+<form>
+    <div class="row">
+        <div class="input-field col s12">
+            <input value="" id="email" name="email" type="text" class="validate">
+            <label class="active" for="email">E-mail</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col s12">
+            <input value="" id="password" name="password" type="password" class="validate">
+            <label class="active" for="password">Senha</label>
+            
+        </div>
+        <a href="/logon" class="link col s12 grey-text text-darken-1">Não estou cadastrado (criar conta)</a>
+    </div>
+
+    <div class="row">
+        <button class="btn waves-effect grey darken-1 col s12" type="submit" name="action">
+            Entrar
+        </button>
+        <a href="/" class="link col s12 grey-text text-darken-1">Esqueci minha senha</a>
+    </div>
+</form>
+
+{% endblock %}

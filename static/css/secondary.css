@@ -1,0 +1,19 @@
+body{
+    margin: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper{
+    width: 94%;
+    max-width: 720px;
+}
+
+main, form{
+    width: 100%;
+}
+
+.link{
+    text-align: center;
+}
