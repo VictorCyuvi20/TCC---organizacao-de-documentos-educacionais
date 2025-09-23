@@ -1,5 +1,5 @@
-from flask import Flask, render_template, redirect
-
+from flask import Flask, render_template, redirect, request, session
+from model import control_user
 app = Flask(__name__)
 
 # CRIANDO CHAVE SECRETA
@@ -13,6 +13,21 @@ def index():
 @app.route("/logon")
 def logon():
     return render_template("pages/logon.html")
+
+@app.route("/post/logon", methods=["POST"])
+def cadastro_user():
+    nome = request.form.get("name")
+    senha = request.form.get("password")
+    email = request.form.get("email")
+    
+
+    sucesso = control_user.Usuario.registra_user(nome, senha, email)
+
+    if sucesso:
+        session['usuario_email'] = email
+        return redirect("/")
+    else:
+        return redirect("/logon")
 
 # [ --------- FIM DAS ROTAS --------- ] #
 
