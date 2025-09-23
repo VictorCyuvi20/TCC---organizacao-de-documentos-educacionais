@@ -15,7 +15,8 @@ create table if not exists tb_document(
     descripition char(255) not null,
     category char(15) not null,
     image text not null,
-    amount int not null
+    amount int not null,
+    visible bool default 0
 );
 
 create table if not exists tb_historic(
@@ -56,3 +57,4 @@ insert into tb_document(name, descripition, category, image, amount) values("pro
 insert into tb_document(name, descripition, category, image, amount) values("prova de biologia", "esta prova possui 10 quertões sobre biologia avançada", "biologia", "imagem03.jpg", 20);
 
 select * from tb_user
+
