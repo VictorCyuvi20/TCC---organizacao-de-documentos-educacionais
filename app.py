@@ -38,7 +38,7 @@ def efetuar_login():
     email = request.form.get("email")
     senha = request.form.get("password")
 
-    Control.login_user(email, senha)
+    control_user.Usuario.login_user(email, senha)
     return redirect("/")
 # [ --------- FIM DAS ROTAS --------- ] #
 
