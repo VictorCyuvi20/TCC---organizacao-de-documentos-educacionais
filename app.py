@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
+from model.control_user import Control
 
 app = Flask(__name__)
 
@@ -13,6 +14,15 @@ def index():
 @app.route("/logon")
 def logon():
     return render_template("pages/logon.html")
+
+
+@app.route("/api/login", methods=["POST"])
+def efetuar_login():
+    email = request.form.get("email")
+    senha = request.form.get("password")
+
+    Control.login_user(email, senha)
+    return redirect("/")
 
 # [ --------- FIM DAS ROTAS --------- ] #
 
