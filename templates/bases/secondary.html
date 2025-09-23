@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  {% block head %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- DEFININDO O BLOCO DE TÍTULO -->
+  <title>{% block title %}{% endblock %} - TCC LIVROS</title>
+
+  <!-- IMPORTANDO O FONTAWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- IMPORTANDO ESTILOS LOCAIS -->
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/global.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/materialize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/secondary.css') }}">
+
+  <!-- IMPORTANDO SCRIPTS LOCAIS -->
+  <script defer src="{{ url_for('static',filename='javascript/materialize.js') }}"></script>
+
+  {% endblock %}
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1>{% block sectiontitle %} {% endblock %}</h1>
+            <p class="flow-text grey-text text-darken-1">{% block subtitle %} {% endblock %}</p>
+          </header>
+        
+          <main class="content">
+            {% block content %}
+        
+            {% endblock %}
+          </main>
+        
+          <footer class="footer">
+            
+          </footer>
+    </div>
+</body>
+
+</html>
