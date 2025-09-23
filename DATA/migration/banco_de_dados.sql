@@ -4,7 +4,7 @@ use db_tcc;
 create table if not exists tb_user(
 	id_user int primary key auto_increment,
     name char(40) not null,
-    password varchar(16) not null,
+    password varchar(255) not null,
     email varchar(50) not null,
     profile_type char(15) not null
 );

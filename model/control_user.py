@@ -11,7 +11,7 @@ class Control:
 
         mycursor.execute(sql, valor)
         resultado = mycursor.fetchall()
-
+        print(resultado)
         mycursor.close()
 
         return resultado
