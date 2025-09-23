@@ -11,7 +11,7 @@ Vamos cadastrar sua conta
 
 {% block content %}
 
-<form>
+<form action="/post/logon" method="POST">
     <div class="row">
         <div class="input-field col s12">
             <input value="" id="name" name="name" type="text" class="validate">
@@ -23,13 +23,6 @@ Vamos cadastrar sua conta
         <div class="input-field col s12">
             <input value="" id="email" name="email" type="text" class="validate">
             <label class="active" for="email">E-mail</label>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-field col s12">
-            <input value="" id="time" name="time" type="time" class="validate">
-            <label class="active" for="time">Horário de Trabalho</label>
         </div>
     </div>
 
