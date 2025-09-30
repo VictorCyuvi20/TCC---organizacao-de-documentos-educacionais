@@ -9,7 +9,7 @@ class Control:
         cx_db = Conexao.cria_conexao()
         mycursor = cx_db.cursor(dictionary=True)
 
-        sql = """SELECT name, descripition, category, image, amount FROM tb_document"""
+        sql = """SELECT id_document, name, descripition, category, image, amount FROM tb_document"""
 
         mycursor.execute(sql)
         resultado = mycursor.fetchall()
@@ -19,7 +19,7 @@ class Control:
 
         return resultado
     
-
+    @staticmethod
     def exibir_documento(codigo):
         cx_db = Conexao.cria_conexao()
         mycursor = cx_db.cursor(dictionary=True)
