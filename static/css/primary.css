@@ -1,0 +1,101 @@
+body{
+    margin: 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fs-1{
+    font-size: 1rem;
+}
+
+.fs-2{
+    font-size: 1.2rem;
+}
+
+.fs-3{
+    font-size: 1.4rem;
+}
+
+.fs-4{
+    font-size: 1.6rem;
+}
+
+.fs-5{
+    font-size: 1.8rem;
+}
+
+.fs-6{
+    font-size: 2rem;
+}
+
+.wrapper{
+    width: 100vw;
+    max-width: 500px;
+    min-height: 100vh;
+}
+
+.content{
+    width: 100%;
+
+    margin: 8px auto;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 0.4rem;
+
+    padding: 0.8rem 0.6rem 0.6rem;
+}
+
+.header h1{
+    margin: 0;
+}
+
+.search{
+    padding: 0 1.2rem;
+}
+
+#search-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#search-bar button[type=submit]{
+    aspect-ratio: 2 / 1;
+}
+
+.document-card{
+    background-color: rgba(0,0,0,0.1);
+    margin: 1.2rem 1.2rem;
+    padding: 1em 1rem;
+
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-row-start: 1;
+    grid-row-end: 10;
+}
+
+.document-card .doc-img{
+    width: 100%;
+    grid-row: 1 / span 6;
+}
+
+.document-card .doc-title,
+.document-card .doc-amount,
+.document-card .doc-desc-label,
+.document-card .doc-desc{
+    margin: 0 0 0.4rem;
+    grid-column: 2 / span 2;
+    padding-left: 0.6rem;
+}
+
+.document-card .doc-details{
+    grid-column: 1 / span 3;
+}

@@ -9,13 +9,19 @@ app = Flask(__name__)
 app.secret_key = "8350e5a3e24c153df2275c9f80692773"
 
 
+
+#rota para a pagina principal
 @app.route("/")
 def index():
     return render_template("pages/login.html")
 
+
+
+#rota para à pagina de cadastro
 @app.route("/logon")
 def logon():
     return render_template("pages/logon.html")
+
 
 @app.route("/historico", methods=["GET"])
 def historico():
@@ -36,12 +42,17 @@ def historico():
     # Renderiza o template 'user_requests.html' com os dados encontrados
     return render_template("pages/user_requests.html", id_usuario_html=id_usuario_data)
 
+
+#rota para a pagina onde é possivel ver os documentos cadastrados
 @app.route("/api/documentos")
 def documentos():
     itens = control_document.Control.exibir_itens()
-    return render_template("pages/teste.html", itens = itens)
-    
+    return render_template("pages/home.html", itens = itens)
 
+
+
+
+#rota para a pagina do documento escolhido para a solicitação
 @app.route("/document/<codigo>")
 def mostrar_documento(codigo):
     documento = control_document.Control.exibir_documento(codigo)
@@ -56,6 +67,9 @@ def mostrar_documento(codigo):
     
     return render_template("pages/document.html", documento_html = documento, usuario_id = id_usuario)
 
+
+
+#rota para adicionar os pedidos nas tabelas do banco de dados, tanto no request quanto no historic
 @app.route("/document/pedido/<int:codigo>/<int:id_usuario>", methods=["POST"])
 def registrar_pedido(codigo, id_usuario):
     try:
@@ -64,6 +78,9 @@ def registrar_pedido(codigo, id_usuario):
     except Exception as e:
         return f"Erro ao registrar pedido: {str(e)}", 500
 
+
+
+#rota para efetuar o cadastro do usuario na tabela do banco de dados (tb_user)
 @app.route("/post/logon", methods=["POST"])
 def cadastro_user():
     nome = request.form.get("name")
@@ -79,6 +96,8 @@ def cadastro_user():
         return redirect("/logon")
 
 
+
+#rota para validar o login do usuario (a validação esta no control user na função "login_user")
 @app.route("/api/login", methods=["POST"])
 def efetuar_login():
     email = request.form.get("email")
@@ -88,9 +107,7 @@ def efetuar_login():
 
     return redirect("/document/1")
 
-
 # [ --------- FIM DAS ROTAS --------- ] #
-
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)

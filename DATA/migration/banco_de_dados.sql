@@ -24,7 +24,9 @@ create table if not exists tb_historic(
     id_user int,
     id_document int,
     foreign key (id_user) references tb_user(id_user),
-    foreign key (id_document) references tb_document(id_document)
+    foreign key (id_document) references tb_document(id_document),
+    -- Data e Hora
+    date_and_time DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 create table if not exists tb_request(
@@ -52,8 +54,8 @@ insert into tb_user(name, password, email, profile_type) values("zacajaca23", "1
 
 select * from tb_document;
 insert into tb_document(name, descripition, category, image, amount) values("prova de matematica", "esta prova possui 10 quertões sobre matematica avançada", "matematica", "../../static/images/imagem_exemplo1.jpg", 10);
-insert into tb_document(name, descripition, category, image, amount) values("prova de quimica", "esta prova possui 10 quertões sobre quimica avançada", "quimica", "../../static/images/imagem_exemplo2.jpg", 15);
+insert into tb_document(name, descripition, category, image, amount) values("prova de quimica", "esta prova possui 10 quertões sobre quimica avançada", "quimica", "../../static/images/imagem_exemplo3.jpg", 15);
 insert into tb_document(name, descripition, category, image, amount) values("prova de biologia", "esta prova possui 10 quertões sobre biologia avançada", "biologia", "../../static/images/imagem_exemplo3.jpg", 20);
 
-select * from tb_user;
-
+select * from tb_user inner join tb_document ON tb_user.id_user = tb_document.id_document
+inner join tb_request ON tb_document.id_document = tb_request.id_document;
