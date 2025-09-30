@@ -14,15 +14,15 @@
 <section class="documents">
     {% for item in itens %}
     <div class="document-card">
-        <img class="doc-img" src="{{itens.image}}" alt="{{itens.category}}">
+        <img class="doc-img" src="{{item.image}}" alt="{{itens.category}}">
 
-        <h3 class="doc-title fs-4">{{itens.name}}</h3>
+        <h3 class="doc-title fs-4">{{item.name}}</h3>
 
         <span class="doc-amount">Quantidade em Estoque: {{item.amount}}</span>
 
         <span class="doc-desc-label">Descrição</span>
-        <p class="doc-desc">{{itens.descripition}}</p>
-            <a href="/document/{{ itens.id_document }}" class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</a>
+        <p class="doc-desc">{{item.descripition}}</p>
+            <a href="/document/{{ item.id_document }}" class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</a>
 
     </div>
     {% endfor %}

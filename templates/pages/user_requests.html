@@ -1,4 +1,4 @@
-{% extends "bases/secondary.html" %}
+{% extends "bases/main.html" %}
 {% block title %}Minhas Solicitações{% endblock %}
 
 {% block sectiontitle %}
@@ -6,28 +6,24 @@
 {% endblock %}
 
 {% block content %}
-<div>
-    <form action="/historico" method="GET">
-    <input type="text" name="search" placeholder="Pesquise pelo nome do documento..." class="form-control" />
-    <button type="submit" class="btn waves-effect grey darken-1">Pesquisar</button>
-  </form>
-</div>
+<section class="search outline" action="/historico" method="GET">
+    <form id="search-bar">
+        <input type="text" placeholder="Pesquisar" name="search">
+        <button type="submit" class="btn waves-effect grey darken-1 col s12" name="action"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</section>
 <section class="row">
   {% if id_usuario_html %}
     {% for item_historico in id_usuario_html %}
-    <div class="card col" style="padding: 2rem; margin-left: 50px;">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="{{ item_historico.image }}" alt="Imagem do historico">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{ item_historico.document_name }}</span>
-          <div style="width: 170px">
-              <button class="btn waves-effect grey darken-1 col s12" style="margin-bottom: 5px;">Cancelar</button>
-              <button class="btn waves-effect grey darken-1 col s12">Aceitar</button>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
+    <div class="document-card">
+        <img class="doc-img" src="{{ item_historico.image }}" alt="">
+
+        <h3 class="doc-title fs-4">{{ item_historico.document_name }}</h3>
+
+        <span class="doc-desc-label"></span>
+        <button class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Cancelar</button>
+    </div>
+   {% endfor %}
   {% else %}
     <p class="col-12">Nenhum histórico encontrado.</p>
   {% endif %}

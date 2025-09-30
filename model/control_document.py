@@ -40,7 +40,7 @@ class Control:
         mycursor = cx_db.cursor(dictionary=True)
 
         # Consulta simples para filtrar pelo nome do documento
-        sql = """SELECT h.*, d.name as document_name
+        sql = """SELECT h.*, d.name as document_name, 
                 FROM tb_historic h
                 JOIN tb_document d ON h.id_document = d.id_document
                 WHERE h.id_user = %s AND d.name LIKE %s"""
