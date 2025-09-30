@@ -12,17 +12,19 @@
 </section>
 
 <section class="documents">
+    {% for item in itens %}
     <div class="document-card">
-        <img class="doc-img" src="https://marketplace.canva.com/EAGCwg_Ni6g/2/0/1131w/canva-documento-a4-capa-planejador-estudos-claro-creme-e-marrom-jczPDJ2a9vA.jpg" alt="">
+        <img class="doc-img" src="{{item.image}}" alt="{{item.category}}">
 
-        <h3 class="doc-title fs-4">Título do Documento</h3>
+        <h3 class="doc-title fs-4">{{item.name}}</h3>
 
-        <span class="doc-amount">Quantidade em Estoque: 23</span>
+        <span class="doc-amount">Quantidade em Estoque: {{item.amount}}</span>
 
         <span class="doc-desc-label">Descrição</span>
-        <p class="doc-desc">Lorem Ipsum Dolorem Sit Amet</p>
+        <p class="doc-desc">{{item.descripition}}</p>
         <button class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</button>
     </div>
+    {% endfor %}
 </section>
 
 {% endblock %}
