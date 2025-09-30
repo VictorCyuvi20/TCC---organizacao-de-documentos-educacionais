@@ -25,12 +25,24 @@ def documentos():
 @app.route("/document/<codigo>")
 def mostrar_documento(codigo):
     documento = control_document.Control.exibir_documento(codigo)
+    id_usuario = session.get('id_usuario')
+
+    if id_usuario is None:
+        return "Usuário não autenticado", 401
+
 
     if documento is None:
         return "Documento não encontrado", 404
     
-    return render_template("pages/document.html", documento_html = documento)
+    return render_template("pages/document.html", documento_html = documento, usuario_id = id_usuario)
 
+@app.route("/document/pedido/<int:codigo>/<int:id_usuario>", methods=["POST"])
+def registrar_pedido(codigo, id_usuario):
+    try:
+        control_user.Usuario.pedido_user(codigo, id_usuario)
+        return "Pedido registrado com sucesso", 200
+    except Exception as e:
+        return f"Erro ao registrar pedido: {str(e)}", 500
 
 @app.route("/post/logon", methods=["POST"])
 def cadastro_user():
@@ -54,7 +66,7 @@ def efetuar_login():
 
     control_user.Usuario.login_user(email, senha)
 
-    return redirect("/api/documentos")
+    return redirect("/document/1")
 
 
 # [ --------- FIM DAS ROTAS --------- ] #
