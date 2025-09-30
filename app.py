@@ -17,6 +17,11 @@ def index():
 def logon():
     return render_template("pages/logon.html")
 
+@app.route("/api/documentos")
+def documentos():
+    itens = control_document.Control.exibir_itens()
+    return render_template("pages/teste.html", itens = itens)
+
 
 @app.route("/post/logon", methods=["POST"])
 def cadastro_user():
@@ -40,8 +45,7 @@ def efetuar_login():
 
     control_user.Usuario.login_user(email, senha)
 
-    itens = control_document.Control.exibir_itens()
-    return render_template("pages/teste.html", itens = itens)
+    return redirect("/api/documentos")
 
 
 # [ --------- FIM DAS ROTAS --------- ] #
