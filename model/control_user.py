@@ -60,4 +60,3 @@ class Usuario:
                     cx_db.close()
             except:
                 pass
-
