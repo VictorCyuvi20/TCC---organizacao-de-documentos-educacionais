@@ -1,39 +1,36 @@
-{% extends "bases/main.html" %}
+{% extends "bases/secondary.html" %}
 {% block title %}Minhas Solicitações{% endblock %}
 
 {% block sectiontitle %}
- Minhas solicitações
+Minhas solicitações
 {% endblock %}
 
 {% block content %}
-<section class="search outline">
-    <form id="search-bar">
-        <input type="text" placeholder="Pesquisar" name="search">
-        <button type="submit" class="btn waves-effect grey darken-1 col s12" name="action"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
-</section>
-<section class="row">
-    <div class="document-card">
-        <img class="doc-img" src="https://marketplace.canva.com/EAGCwg_Ni6g/2/0/1131w/canva-documento-a4-capa-planejador-estudos-claro-creme-e-marrom-jczPDJ2a9vA.jpg" alt="">
+<div>
+  <form action="/historico" method="GET">
+    <input type="text" name="search" placeholder="Pesquise pelo nome do documento..." class="form-control" />
+    <button type="submit" class="btn waves-effect grey darken-1">Pesquisar</button>
+  </form>
+</div>
 
-        <h3 class="doc-title fs-4">Título do Documento</h3>
-
-        <span class="doc-amount">Quantidade em Estoque: 23</span>
-
-        <span class="doc-desc-label">Descrição</span>
-        <p class="doc-desc">Lorem Ipsum Dolorem Sit Amet</p>
-        <button class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Cancelar</button>
-    </div>
-    <div class="document-card">
-        <img class="doc-img" src="https://marketplace.canva.com/EAGCwg_Ni6g/2/0/1131w/canva-documento-a4-capa-planejador-estudos-claro-creme-e-marrom-jczPDJ2a9vA.jpg" alt="">
-
-        <h3 class="doc-title fs-4">Título do Documento</h3>
-
-        <span class="doc-amount">Quantidade em Estoque: 23</span>
-
-        <span class="doc-desc-label">Descrição</span>
-        <p class="doc-desc">Lorem Ipsum Dolorem Sit Amet</p>
-        <button class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Cancelar</button>
-    </div>
+<section class="row mt-4">
+  {% if id_usuario_html %}
+    {% for item_historico in id_usuario_html %}
+      <div class="card col-12 col-md-4" style="padding: 2rem; margin-bottom: 20px;">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{ item_historico.image }}" alt="Imagem do Histórico">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{ item_historico.document_name }}</span>
+          <div style="width: 170px">
+            <button class="btn waves-effect grey darken-1 col s12" style="margin-bottom: 5px;">Cancelar</button>
+            <button class="btn waves-effect green darken-1 col s12">Aceitar</button>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="col-12">Nenhum histórico encontrado.</p>
+  {% endif %}
 </section>
 {% endblock %}
