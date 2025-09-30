@@ -33,3 +33,25 @@ class Control:
         cx_db.close()
 
         return documento
+    
+    @staticmethod
+    def exibir_historico(id_usuario, search_query=""):
+        cx_db = Conexao.cria_conexao()
+        mycursor = cx_db.cursor(dictionary=True)
+
+        # Consulta simples para filtrar pelo nome do documento
+        sql = """SELECT h.*, d.name as document_name
+                FROM tb_historic h
+                JOIN tb_document d ON h.id_document = d.id_document
+                WHERE h.id_user = %s AND d.name LIKE %s"""
+        
+        # Usando %search_query% para correspondência parcial no nome do documento
+        mycursor.execute(sql, (id_usuario, f"%{search_query}%"))
+        resultado = mycursor.fetchall()
+
+        mycursor.close()
+        cx_db.close()
+
+        return resultado
+
+

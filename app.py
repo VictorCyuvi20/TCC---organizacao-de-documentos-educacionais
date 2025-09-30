@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, request, session, jsonify
 from model import control_user
 from model import control_document
 
@@ -17,10 +17,30 @@ def index():
 def logon():
     return render_template("pages/logon.html")
 
+@app.route("/historico", methods=["GET"])
+def historico():
+    # Recuperando o ID do usuário da sessão
+    id_usuario = session.get('id_usuario')
+    
+    if id_usuario is None:
+        return "Usuário não autenticado", 401  # Se não tiver id_usuario na sessão, exibe erro
+
+    search_query = request.args.get('search', '')  # Pegando a pesquisa da URL, se houver
+    # Chama a função exibir_historico para pegar os dados
+    id_usuario_data = control_document.Control.exibir_historico(id_usuario, search_query)
+
+    # Se não houver dados, retorna uma mensagem de erro
+    if not id_usuario_data:
+        return "Nenhum histórico encontrado", 404
+
+    # Renderiza o template 'user_requests.html' com os dados encontrados
+    return render_template("pages/user_requests.html", id_usuario_html=id_usuario_data)
+
 @app.route("/api/documentos")
 def documentos():
     itens = control_document.Control.exibir_itens()
     return render_template("pages/teste.html", itens = itens)
+    
 
 @app.route("/document/<codigo>")
 def mostrar_documento(codigo):
@@ -40,7 +60,7 @@ def mostrar_documento(codigo):
 def registrar_pedido(codigo, id_usuario):
     try:
         control_user.Usuario.pedido_user(codigo, id_usuario)
-        return "Pedido registrado com sucesso", 200
+        return redirect("/historico")
     except Exception as e:
         return f"Erro ao registrar pedido: {str(e)}", 500
 
