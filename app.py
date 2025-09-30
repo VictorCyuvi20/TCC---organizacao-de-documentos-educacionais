@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, redirect, request, session
 from model import control_user
+from model import control_document
 
 app = Flask(__name__)
 
@@ -12,6 +13,7 @@ app.secret_key = "8350e5a3e24c153df2275c9f80692773"
 def index():
     return render_template("pages/login.html")
 
+
 @app.route("/logon")
 def logon():
     return render_template("pages/logon.html")
@@ -22,7 +24,6 @@ def cadastro_user():
     nome = request.form.get("name")
     senha = request.form.get("password")
     email = request.form.get("email")
-    
 
     sucesso = control_user.Usuario.registra_user(nome, senha, email)
 
@@ -39,8 +40,13 @@ def efetuar_login():
     senha = request.form.get("password")
 
     control_user.Usuario.login_user(email, senha)
-    return redirect("/")
+
+    itens = control_document.Control.exibir_itens()
+    return render_template("pages/teste.html", itens = itens)
+
+
 # [ --------- FIM DAS ROTAS --------- ] #
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=8080)
