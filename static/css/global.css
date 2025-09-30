@@ -12,3 +12,25 @@ button:hover{
 .outline{
     outline: 1px solid rgb(225, 225, 225);
 }
+
+
+#goback{
+    background-color: rgba(1, 1, 1, 0);
+    border: none;
+    border-radius: 50%;
+    transition: background-color 0.45s;
+
+    color: #000;
+    box-shadow: none;
+    width: 36px;
+
+    padding: 0;
+}
+
+#goback:hover{
+    background-color: rgba(1, 1, 1, 0.1);
+}
+
+#goback:active{
+    background-color: rgba(1, 1, 1, 0.05);
+}
