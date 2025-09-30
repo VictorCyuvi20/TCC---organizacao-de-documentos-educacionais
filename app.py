@@ -49,7 +49,7 @@ def efetuar_login():
     return redirect("/api/documentos")
 
 
-# [ --------- FIM DAS ROTAS --------- ] #
+# [ --------- FIM DAS ROTAS --------- ]
 
 
 if __name__ == "__main__":
