@@ -23,7 +23,7 @@ class Usuario:
         cx_db.close()
 
         if resultado:
-            session['Usuário'] = resultado['email']
+            session['email_usuario'] = resultado['email']
             session['nome_usuario'] = resultado['name']
             session['id_usuario'] = resultado['id_user']
             return True
@@ -60,3 +60,20 @@ class Usuario:
                     cx_db.close()
             except:
                 pass
+
+    def pedido_user(codigo, id_usuario):
+        cx_db = Conexao.cria_conexao()
+        mycursor = cx_db.cursor()
+
+        sql = """INSERT INTO tb_historic (id_user, id_document) VALUES (%s, %s)"""
+
+        sql2 = """INSERT INTO tb_request (id_user, id_document) VALUES (%s, %s)"""
+
+        mycursor.execute(sql, (id_usuario, codigo))
+        mycursor.execute(sql2, (id_usuario, codigo))
+
+        cx_db.commit()
+
+        mycursor.close()
+        cx_db.close()
+
