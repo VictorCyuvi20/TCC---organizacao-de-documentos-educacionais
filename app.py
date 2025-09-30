@@ -13,7 +13,6 @@ app.secret_key = "8350e5a3e24c153df2275c9f80692773"
 def index():
     return render_template("pages/login.html")
 
-
 @app.route("/logon")
 def logon():
     return render_template("pages/logon.html")
