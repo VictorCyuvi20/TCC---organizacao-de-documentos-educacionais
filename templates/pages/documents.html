@@ -1,0 +1,22 @@
+{% extends "bases/secondary.html" %}
+{% block title %}Material Didádico{% endblock %}
+
+{% block sectiontitle %}
+ Nome do documento
+{% endblock %}
+
+{% block content %}
+<section>
+    <span class="col s12 grey-text text-darken-1">Quantidade em estoque:</span>
+    <div class="row">
+        <img src="" alt="imagem do documento">
+        <p></p>
+    </div>
+</section>
+<section class="row">
+    <input type="number" placeholder="Quantidade desejada">
+    <button class="btn waves-effect grey darken-1 col s12">
+        Solicitar material
+    </button>
+</section>
+{% endblock %}
