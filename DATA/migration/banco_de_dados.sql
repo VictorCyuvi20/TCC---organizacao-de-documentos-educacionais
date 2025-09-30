@@ -52,7 +52,7 @@ insert into tb_user(name, password, email, profile_type) values("zacajaca23", "1
 
 select * from tb_document;
 insert into tb_document(name, descripition, category, image, amount) values("prova de matematica", "esta prova possui 10 quertões sobre matematica avançada", "matematica", "../../static/images/imagem_exemplo1.jpg", 10);
-insert into tb_document(name, descripition, category, image, amount) values("prova de quimica", "esta prova possui 10 quertões sobre quimica avançada", "quimica", "../../static/images/imagem_exemplo3.jpg", 15);
+insert into tb_document(name, descripition, category, image, amount) values("prova de quimica", "esta prova possui 10 quertões sobre quimica avançada", "quimica", "../../static/images/imagem_exemplo2.jpg", 15);
 insert into tb_document(name, descripition, category, image, amount) values("prova de biologia", "esta prova possui 10 quertões sobre biologia avançada", "biologia", "../../static/images/imagem_exemplo3.jpg", 20);
 
 select * from tb_user;
