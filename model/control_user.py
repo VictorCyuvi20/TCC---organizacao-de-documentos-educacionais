@@ -23,7 +23,7 @@ class Usuario:
         cx_db.close()
 
         if resultado:
-            session['Usuário'] = resultado['email']
+            session['usuario'] = resultado['email']
             session['nome_usuario'] = resultado['name']
             session['id_usuario'] = resultado['id_user']
             return True

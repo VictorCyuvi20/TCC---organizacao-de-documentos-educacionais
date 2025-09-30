@@ -10,7 +10,11 @@ app.secret_key = "8350e5a3e24c153df2275c9f80692773"
 
 @app.route("/")
 def index():
-    return render_template("pages/login.html")
+    if 'usuario' in session:
+        print('usuario')
+        return render_template("bases/main.html")#TESTEEEEE
+    else:
+        return render_template("pages/login.html")
 
 @app.route("/logon")
 def logon():
@@ -27,7 +31,7 @@ def cadastro_user():
     sucesso = control_user.Usuario.registra_user(nome, senha, email)
 
     if sucesso:
-        session['usuario_email'] = email
+        session['usuario'] = email
         return redirect("/")
     else:
         return redirect("/logon")
@@ -38,8 +42,8 @@ def efetuar_login():
     email = request.form.get("email")
     senha = request.form.get("password")
 
-    control_user.Usuario.login_user(email, senha)
-    return redirect("/")
+    if control_user.Usuario.login_user(email, senha):
+        return redirect("/")
 # [ --------- FIM DAS ROTAS --------- ] #
 
 if __name__ == "__main__":
