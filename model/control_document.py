@@ -18,3 +18,18 @@ class Control:
         cx_db.close()
 
         return resultado
+    
+
+    def exibir_documento(codigo):
+        cx_db = Conexao.cria_conexao()
+        mycursor = cx_db.cursor(dictionary=True)
+
+        sql = """SELECT * from tb_document WHERE id_document = %s"""
+
+        mycursor.execute(sql, (codigo,))
+        documento = mycursor.fetchone()
+
+        mycursor.close()
+        cx_db.close()
+
+        return documento

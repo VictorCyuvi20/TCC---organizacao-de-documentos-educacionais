@@ -22,6 +22,15 @@ def documentos():
     itens = control_document.Control.exibir_itens()
     return render_template("pages/teste.html", itens = itens)
 
+@app.route("/document/<codigo>")
+def mostrar_documento(codigo):
+    documento = control_document.Control.exibir_documento(codigo)
+
+    if documento is None:
+        return "Documento não encontrado", 404
+    
+    return render_template("pages/document.html", documento_html = documento)
+
 
 @app.route("/post/logon", methods=["POST"])
 def cadastro_user():
