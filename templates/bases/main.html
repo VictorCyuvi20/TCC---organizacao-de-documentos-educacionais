@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- DEFININDO O BLOCO DE TÍTULO -->
-  <title>{% block title %}{% endblock %} - TCC LIVROS</title>
+  <title>{% block title %}{% endblock %} - TCC Documentos</title>
 
   <!-- IMPORTANDO O FONTAWESOME -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -17,6 +17,8 @@
   <!-- IMPORTANDO ESTILOS LOCAIS -->
   <link rel="stylesheet" href="{{ url_for('static',filename='css/global.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='css/materialize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/reset.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
 
   <!-- IMPORTANDO SCRIPTS LOCAIS -->
   <script defer src="{{ url_for('static',filename='javascript/materialize.js') }}"></script>
@@ -25,26 +27,22 @@
 </head>
 
 <body>
-  <header class="header">
-    <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Logo</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            {% block navlinks %}{% endblock %}
-          </ul>
-        </div>
-      </nav>
-  </header>
-
-  <main class="content">
-    {% block content %}
-
-    {% endblock %}
-  </main>
-
-  <footer class="footer">
-    
-  </footer>
+    <div class="wrapper outline">
+        <header class="header">
+            <button class="btn" id="goback"><i class="fa-solid fa-arrow-left"></i></button>
+            <h1 class="fs-6">{% block sectiontitle %} {% endblock %}</h1>
+          </header>
+        
+          <main class="content">
+            {% block content %}
+        
+            {% endblock %}
+          </main>
+        
+          <footer class="footer">
+            
+          </footer>
+    </div>
 </body>
 
 </html>
