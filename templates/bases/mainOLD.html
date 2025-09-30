@@ -17,7 +17,7 @@
   <!-- IMPORTANDO ESTILOS LOCAIS -->
   <link rel="stylesheet" href="{{ url_for('static',filename='css/global.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='css/materialize.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static',filename='css/secondary.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/primary.css') }}">
 
   <!-- IMPORTANDO SCRIPTS LOCAIS -->
   <script defer src="{{ url_for('static',filename='javascript/materialize.js') }}"></script>
@@ -26,22 +26,25 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <header class="header">
-            <h1>{% block sectiontitle %} {% endblock %}</h1>
-            <p class="flow-text grey-text text-darken-1">{% block subtitle %} {% endblock %}</p>
-          </header>
-        
-          <main class="content">
-            {% block content %}
-        
-            {% endblock %}
-          </main>
-        
-          <footer class="footer">
-            
-          </footer>
-    </div>
+  <header class="header">
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo center">{% block sectiontitle %}{% endblock %}</a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+          </ul>
+        </div>
+      </nav>
+  </header>
+
+  <main class="content">
+    {% block content %}
+
+    {% endblock %}
+  </main>
+
+  <footer class="footer">
+    
+  </footer>
 </body>
 
 </html>
