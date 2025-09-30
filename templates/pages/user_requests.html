@@ -2,35 +2,61 @@
 {% block title %}Minhas Solicitações{% endblock %}
 
 {% block sectiontitle %}
-Minhas solicitações
+ Minhas solicitações
 {% endblock %}
 
 {% block content %}
 <div>
-  <form action="/historico" method="GET">
-    <input type="text" name="search" placeholder="Pesquise pelo nome do documento..." class="form-control" />
-    <button type="submit" class="btn waves-effect grey darken-1">Pesquisar</button>
-  </form>
+    <input type="text" placeholder="Pesquisa">
 </div>
-
-<section class="row mt-4">
-  {% if id_usuario_html %}
-    {% for item_historico in id_usuario_html %}
-      <div class="card col-12 col-md-4" style="padding: 2rem; margin-bottom: 20px;">
+<section class="row">
+    <div class="card col" style="padding: 2rem; margin-left: 50px;">
         <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="{{ item_historico.image }}" alt="Imagem do Histórico">
+          <img class="activator" src="images/office.jpg" alt="alguma coisa">
         </div>
         <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{ item_historico.document_name }}</span>
+          <span class="card-title activator grey-text text-darken-4">Título do material</span>
           <div style="width: 170px">
-            <button class="btn waves-effect grey darken-1 col s12" style="margin-bottom: 5px;">Cancelar</button>
-            <button class="btn waves-effect green darken-1 col s12">Aceitar</button>
+              <button class="btn waves-effect grey darken-1 col s12" style="margin-bottom: 5px;">Cancelar</button>
+              <button class="btn waves-effect grey darken-1 col s12">Aceitar</button>
           </div>
         </div>
       </div>
-    {% endfor %}
-  {% else %}
-    <p class="col-12">Nenhum histórico encontrado.</p>
-  {% endif %}
+    <div class="card col" style="padding: 2rem; margin-left: 50px;">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/office.jpg" alt="alguma coisa">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Título do material</span>
+          <div style="width: 170px">
+              <button class="btn waves-effect grey darken-1 col s12" style="margin-bottom: 5px;">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    <div class="card col" style="padding: 2rem; margin-left: 50px;">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/office.jpg" alt="alguma coisa">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Título do material</span>
+          <div style="width: 170px">
+              <button class="btn waves-effect grey darken-1 col s12" style="margin-bottom: 5px;">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    <div class="card col" style="padding: 2rem; margin-left: 50px;">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="images/office.jpg" alt="alguma coisa">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Título do material</span>
+          <div style="width: 170px">
+              <button class="btn waves-effect grey darken-1 col s12" style="margin-bottom: 5px;">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    <div class="card col">
+
+    </div>
 </section>
 {% endblock %}
