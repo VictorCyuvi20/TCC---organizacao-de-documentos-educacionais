@@ -1,0 +1,37 @@
+{% extends "bases/main.html" %}
+{% block title %}Página Inicial{% endblock %}
+
+{% block sectiontitle %}Suas Informações{% endblock %}
+
+{% block content %}
+        <div class="card-panel center">
+            <img src="https://cdn-icons-png.flaticon.com/128/5393/5393061.png" alt="" class="responsive-img ">
+        </div>
+
+        <div class="row center">
+            <a class="waves-effect waves-light btn center">Minhas Solicitações</a>
+        </div>
+
+        <div class="row center">
+            <a class="waves-effect waves-light btn center">Meus Arquivos</a>
+            <a class="waves-effect waves-light btn center">Histórico de Arquivos</a>
+        </div>
+
+        <section class="documents">
+
+            <div class="document-card s6">
+                <img class="doc-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vWDMnc77GCB-iZeXiLU4vdikYlEhfFvfw3U23StHsnU3zYaWKONcltqcj1Upqfn9_o0&usqp=CAU" alt="">
+
+                <a href="" class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</a>
+
+            </div>
+
+            <div class="document-card center-align s6">
+                <img class="doc-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vWDMnc77GCB-iZeXiLU4vdikYlEhfFvfw3U23StHsnU3zYaWKONcltqcj1Upqfn9_o0&usqp=CAU" alt="">
+                
+                <a href="" class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</a>
+
+            </div>
+        </section>
+
+{% endblock %}
