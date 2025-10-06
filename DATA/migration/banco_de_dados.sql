@@ -49,13 +49,13 @@ create table tb_user_document(
 
 select * from tb_user;
 insert into tb_user(name, password, email, profile_type) values("zacajaca21", "12345678", "seuemail1@gmail.com", "master");
-insert into tb_user(name, password, email, profile_type) values("zacajaca22", "12345678", "seuemail2@gmail.com", "common");
-insert into tb_user(name, password, email, profile_type) values("zacajaca23", "12345678", "seuemail3@gmail.com", "commun");
+insert into tb_user(name, password, email, profile_type) values("Cyuvi", "12345678", "seuemail2@gmail.com", "common");
+insert into tb_user(name, password, email, profile_type) values("Skuar", "12345678", "seuemail3@gmail.com", "commun");
 
 select * from tb_document;
-insert into tb_document(name, descripition, category, image, amount) values("prova de matematica", "esta prova possui 10 quertões sobre matematica avançada", "matematica", "../../static/images/imagem_exemplo1.jpg", 10);
-insert into tb_document(name, descripition, category, image, amount) values("prova de quimica", "esta prova possui 10 quertões sobre quimica avançada", "quimica", "../../static/images/imagem_exemplo3.jpg", 15);
-insert into tb_document(name, descripition, category, image, amount) values("prova de biologia", "esta prova possui 10 quertões sobre biologia avançada", "biologia", "../../static/images/imagem_exemplo3.jpg", 20);
+insert into tb_document(name, descripition, category, image, amount) values("Prova de Matemática", "Esta prova possui 10 questões sobre matemática avançada", "matemática", "../../static/images/imagem_exemplo1.jpg", 10);
+insert into tb_document(name, descripition, category, image, amount) values("Prova de Química", "Esta prova possui 10 questões sobre química avançada", "química", "../../static/images/imagem_exemplo3.jpg", 15);
+insert into tb_document(name, descripition, category, image, amount) values("Prova de Biologia", "Esta prova possui 10 questões sobre biologia avançada", "biologia", "../../static/images/imagem_exemplo3.jpg", 20);
 
 select * from tb_user inner join tb_document ON tb_user.id_user = tb_document.id_document
 inner join tb_request ON tb_document.id_document = tb_request.id_document;
