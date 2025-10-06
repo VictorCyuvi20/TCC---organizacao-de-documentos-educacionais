@@ -9,7 +9,7 @@ class Control:
         cx_db = Conexao.cria_conexao()
         mycursor = cx_db.cursor(dictionary=True)
 
-        sql = """SELECT id_document, name, descripition, category, image, amount FROM tb_document"""
+        sql = """SELECT id_document, name, doc_description, category, image, amount FROM tb_document"""
 
         mycursor.execute(sql)
         resultado = mycursor.fetchall()

@@ -1,7 +1,8 @@
 
-from flask import Flask, render_template, redirect, request, session
-from model import control_user
+from flask import Flask, render_template, redirect, request, session, flash
+from model import control_user 
 from model import control_document
+import re
 
 app = Flask(__name__)
 
@@ -55,8 +56,12 @@ def historico():
 #rota para a pagina onde é possivel ver os documentos cadastrados
 @app.route("/api/documentos")
 def documentos():
+    if 'id_usuario' not in session:
+        flash("Você precisa fazer login para acessar os documentos")
+        return redirect("/")  # ou para onde estiver seu form de login
+
     itens = control_document.Control.exibir_itens()
-    return render_template("pages/home.html", itens = itens)
+    return render_template("pages/home.html", itens=itens)
 
 
 
@@ -95,14 +100,29 @@ def cadastro_user():
     senha = request.form.get("password")
     email = request.form.get("email")
 
+    # Valida o formato do email
+    if not validar_email(email):
+        flash("O formato do email é inválido.", "error")  # Exibe mensagem de erro
+        return redirect("/logon")  # Redireciona de volta para a página de cadastro
+
+    # Aqui você pode adicionar a lógica para verificar se o email já existe (caso precise)
+
     sucesso = control_user.Usuario.registra_user(nome, senha, email)
 
     if sucesso:
-        session['usuario_email'] = email
-        return redirect("/")
+        session['usuario_email'] = email  # Armazena o email na sessão
+        return redirect("/")  # Redireciona para a página inicial após cadastro
     else:
-        return redirect("/logon")
+        flash("Erro ao criar conta. Tente novamente.", "error")  # Exibe mensagem de erro
+        return redirect("/logon")  # Redireciona de volta para a página de cadastro
 
+
+def validar_email(email):
+    # Expressão regular para validar o formato do email
+    padrao_email = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    
+    # Retorna True se o email corresponder ao padrão, senão retorna False
+    return re.match(padrao_email, email) is not None
 
 
 #rota para validar o login do usuario (a validação esta no control user na função "login_user")
@@ -111,9 +131,15 @@ def efetuar_login():
     email = request.form.get("email")
     senha = request.form.get("password")
 
-    control_user.Usuario.login_user(email, senha)
+    if not validar_email(email):
+        return redirect("/")
 
-    return redirect("/document/1")
+    if control_user.Usuario.login_user(email, senha):
+
+        return redirect("/api/documentos")
+    
+    else:
+        return redirect("/")
 
 # [ --------- FIM DAS ROTAS --------- ] #
 

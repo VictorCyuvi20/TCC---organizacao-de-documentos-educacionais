@@ -7,28 +7,40 @@ class Usuario:
 
     @staticmethod
     def login_user(email, senha):
-
+        # Criptografando a senha
         senha_criptografada = sha256(senha.encode()).hexdigest()
 
+        # Usa a classe Conexao para obter a conexão
         cx_db = Conexao.cria_conexao()
         mycursor = cx_db.cursor(dictionary=True)
 
-        valor = (email, senha_criptografada)
-        sql = """SELECT id_user, email, password, name FROM tb_user WHERE email = %s AND password = %s"""
+        try:
+            # Consulta para verificar o usuário com o email e senha
+            sql = """SELECT id_user, email, name, profile_type FROM tb_user WHERE email = %s AND password = %s"""
+            mycursor.execute(sql, (email, senha_criptografada))
 
-        mycursor.execute(sql, valor)
-        resultado = mycursor.fetchone()
+            # Pega o primeiro resultado
+            resultado = mycursor.fetchone()
 
-        mycursor.close()
-        cx_db.close()
-
-        if resultado:
-            session['email_usuario'] = resultado['email']
-            session['nome_usuario'] = resultado['name']
-            session['id_usuario'] = resultado['id_user']
-            return True
-        else:
+            # Se encontrar o usuário, armazena os dados na sessão
+            if resultado:
+                session['email_usuario'] = resultado['email']
+                session['nome_usuario'] = resultado['name']
+                session['id_usuario'] = resultado['id_user']
+                session['profile_type'] = resultado['profile_type']
+                return True
+            else:
+                return False
+        except Exception as err:
+            print(f"Erro no banco de dados: {err}")
             return False
+        finally:
+            # Fechando o cursor e a conexão
+            if mycursor:
+                mycursor.close()
+            if cx_db:
+                cx_db.close()
+
         
     @staticmethod
     def registra_user(nome, senha, email):
