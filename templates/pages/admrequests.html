@@ -1,0 +1,30 @@
+{% extends "bases/main.html" %}
+{% block title %}Material Didádico{% endblock %}
+
+{% block sectiontitle %}
+ Solicitações a permitir
+{% endblock %}
+
+{% block content %}
+<section class="search outline" action="/historico" method="GET">
+    <form id="search-bar">
+        <input type="text" placeholder="Pesquisar" name="search">
+        <button type="submit" class="btn waves-effect grey darken-1 col s12" name="action"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</section>
+<section class="row">
+    <div class="document-card">
+        <img class="doc-img" src="https://static.wikia.nocookie.net/avatar/images/6/68/Korra_vangloriando-seg/revision/latest?cb=20180101043637&path-prefix=pt-br" alt="">
+            <h3 class="doc-title fs-3">123x Nome do Documento</h3>
+            <div class="row" style="margin-left:12.5px;">
+                <span class="grey-text text-darken-1" style="display: inline-block; width:140px;">Em estoque: Número</span>
+                <!-- joao fernando me perdoe por isso foi necessário ^^ -->
+                <span class="grey-text text-darken-1">Requerente: Nome</span>
+            </div>
+        <span class="doc-desc-label">Desc: Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
+        <button class="doc-details btn waves-effect grey darken-1" style="margin-bottom: 5px;" type="submit" name="action">Notificar</button>
+        <button class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Aprovar</button>
+    </div>
+    <p class="col-12">Nenhum histórico encontrado.</p>  
+</section>
+{% endblock %}x'
