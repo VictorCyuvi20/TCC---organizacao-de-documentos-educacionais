@@ -1,9 +1,12 @@
+<!-- O comando abaixo está realizando a implantação da formatação padrão das páginas, adicionando junto dela os títulos e subtítulos para uma leitura melhor. -->
 {% extends "bases/main.html" %}
 {% block title %}Página Inicial{% endblock %}
 
 {% block sectiontitle %}Documentos{% endblock %}
 
 {% block content %}
+
+<!-- Nessa seção contém um formulário com a barra de pesquisa e botão enviar. -->
 <section class="search outline">
     <form id="search-bar">
         <input type="text" placeholder="Pesquisar" name="search">
@@ -11,16 +14,23 @@
     </form>
 </section>
 
+<!-- Na seção abaixo mostra os documentos, com imagem, nome, quantidade no estoque, descrição e ver detalhes. -->
 <section class="documents">
     {% for item in itens %}
     <div class="document-card">
+        <!-- Imagem do documento. -->
         <img class="doc-img" src="{{item.image}}" alt="{{item.category}}">
 
+        <!-- Título do documento. -->
         <h3 class="doc-title fs-4">{{item.name}}</h3>
 
+        <!-- Quantidade no estoque. -->
         <span class="doc-amount">Quantidade em Estoque: {{item.amount}}</span>
 
+        <!-- Descrição do documento. -->
         <span class="doc-desc-label">Descrição</span>
+
+        <!-- Ver detalhes. -->
         <p class="doc-desc">{{item.doc_description}}</p>
             <a href="/document/{{ item.id_document }}" class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</a>
 

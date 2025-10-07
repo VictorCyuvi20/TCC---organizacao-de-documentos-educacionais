@@ -1,3 +1,4 @@
+<!-- O comando abaixo está realizando a implantação da formatação padrão das páginas, adicionando junto dela os títulos e subtítulos para uma leitura melhor. -->
 {% extends "bases/secondary.html" %}
 {% block title %}Material Didádico{% endblock %}
 
@@ -6,17 +7,28 @@
 {% endblock %}
 
 {% block content %}
+<!-- Nessa seção está mostrando a quantidade que há no estoque, imagem do documeno junto da seção mostra també a imgem e um pouco da descrição do livro -->
 <section>
+    <!-- Quantidade que está no estoque -->
     <span class="col s12 grey-text text-darken-1">Quantidade em estoque:{{documento_html.amount}}</span>
+    <!-- Aqui está uma preparação para o envio do documento-->
     <div class="row">
+        <!-- Imagem do documento  -->
         <img src="{{documento_html.image}}" alt="imagem do documento">
+        <!-- Descrição do documeto -->
         <p></p>
     </div>
 </section>
+
+<!-- Seção que está declarando a quantidade que o usuário necessita junto com o botão de soliciar material -->
 <section class="row">
+    <!-- Quantidade que o usuário deseja. -->
     <input type="number" placeholder="Quantidade desejada">
+
+    <!-- Formulário com o botão para a solicitação do material. -->
     <form action="/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
 
+        <!-- Botão Enviar -->
         <button type="submit" class="btn waves-effect grey darken-1 col s12">
             Solicitar material
         </button>
