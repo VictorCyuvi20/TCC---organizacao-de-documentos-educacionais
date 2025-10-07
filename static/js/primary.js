@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function(){
             return;
         };
 
-        goBackButton.addEventListener('onClick', function(){
+        goBackButton.addEventListener('click', function(){
             window.history.back();
         });
     };
