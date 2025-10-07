@@ -15,7 +15,7 @@
 </section>
 <section class="row">
     <input type="number" placeholder="Quantidade desejada">
-    <form action="/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
+    <form action="/api/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
 
         <button type="submit" class="btn waves-effect grey darken-1 col s12">
             Solicitar material
