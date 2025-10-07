@@ -1,3 +1,4 @@
+<!-- Importa a formatação padrão de páginas, adicionando os títulos e sbtítulos para uma melhor leitura. -->
 {% extends "bases/secondary.html" %}
 {% block title %}Iniciar Sessão{% endblock %}
 
@@ -11,7 +12,7 @@ Vamos acessar sua conta
 
 {% block content %}
 
-    <!-- Exibe mensagens de erro, caso existam -->
+    <!-- Exibe mensagens de erro, caso existam. -->
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div class="alert alert-danger">
@@ -22,7 +23,9 @@ Vamos acessar sua conta
         {% endif %}
     {% endwith %}
 
+<!-- Formulário para a entrada do usuário cadastrado. -->
 <form action="/api/login" method="post">
+    <!-- Campo de e-mail -->
     <div class="row">
         <div class="input-field col s12">
             <input value="" id="email" name="email" type="text" class="validate" required>
@@ -30,6 +33,7 @@ Vamos acessar sua conta
         </div>
     </div>
 
+    <!-- Campo da senha. -->
     <div class="row">
         <div class="input-field col s12">
             <input value="" id="password" name="password" type="password" class="validate" required>
@@ -38,6 +42,7 @@ Vamos acessar sua conta
         <a href="/logon" class="link col s12 grey-text text-darken-1">Não estou cadastrado (criar conta)</a>
     </div>
 
+    <!-- Botão de Entrar. -->
     <div class="row">
         <button class="btn waves-effect grey darken-1 col s12" type="submit" name="action">
             Entrar

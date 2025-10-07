@@ -1,17 +1,19 @@
+<!-- O comando abaixo , está importando a formatação padrão das páginas, adicionando também os títulos e subtítulos para melhor leitura. -->
 {% extends "bases/secondary.html" %}
 {% block title %}Iniciar Sessão{% endblock %}
-
 {% block sectiontitle %}
 Olá,
 {% endblock %}
-
 {% block subtitle %}
 Vamos cadastrar sua conta
 {% endblock %}
 
 {% block content %}
 
-<form action="/post/logon" method="POST">
+<!-- Formulário para o cadastro de usuário -->
+<form action="/post/logon" method="POST"> 
+
+    <!-- Campo de Nome -->
     <div class="row">
         <div class="input-field col s12">
             <input value="" id="name" name="name" type="text" class="validate">
@@ -19,6 +21,7 @@ Vamos cadastrar sua conta
         </div>
     </div>
 
+    <!-- Campo de E-mail -->
     <div class="row">
         <div class="input-field col s12">
             <input value="" id="email" name="email" type="text" class="validate">
@@ -26,6 +29,7 @@ Vamos cadastrar sua conta
         </div>
     </div>
 
+    <!-- Campo de Senha -->
     <div class="row">
         <div class="input-field col s12">
             <input value="" id="password" name="password" type="password" class="validate">
@@ -35,6 +39,7 @@ Vamos cadastrar sua conta
         <a href="/" class="link col s12 grey-text text-darken-1">Já estou cadastrado (acessar conta)</a>
     </div>
 
+    <!-- Botão de Envio do Cadastro -->
     <div class="row">
         <button class="btn waves-effect grey darken-1 col s12" type="submit" name="action">
             Cadastrar
