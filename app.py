@@ -25,7 +25,16 @@ def pag_login():
 def logon():
     return render_template("pages/logon.html")
 
+#rota para a pagina onde é possivel ver os documentos cadastrados
+@app.route("/documentos")
+def documentos():
 
+    if 'id_usuario' not in session:
+        flash("Você precisa fazer login para acessar os documentos")
+        return redirect("/")
+
+    itens = control_document.Control.exibir_itens()
+    return render_template("pages/home.html", itens=itens)
 
 @app.route("/historico", methods=["GET"])
 def historico():
@@ -45,19 +54,6 @@ def historico():
 
     # Renderiza o template 'user_requests.html' com os dados encontrados
     return render_template("pages/user_requests.html", id_usuario_html=id_usuario_data)
-
-
-#rota para a pagina onde é possivel ver os documentos cadastrados
-@app.route("/documentos")
-def documentos():
-
-    if 'id_usuario' not in session:
-        flash("Você precisa fazer login para acessar os documentos")
-        return redirect("/")
-
-    itens = control_document.Control.exibir_itens()
-    return render_template("pages/home.html", itens=itens)
-
 
 #rota para a pagina do documento escolhido para a solicitação
 @app.route("/document/<codigo>")
@@ -85,6 +81,7 @@ def registrar_pedido(codigo, id_usuario):
         return f"Erro ao registrar pedido: {str(e)}", 500
 
 
+# -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
 #rota para efetuar o cadastro do usuario na tabela do banco de dados (tb_user)
 @app.route("/api/logon", methods=["POST"])
