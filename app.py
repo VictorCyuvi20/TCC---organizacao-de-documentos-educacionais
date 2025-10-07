@@ -118,7 +118,7 @@ def efetuar_login():
     usuario = control_user.Usuario.login_user(email, senha)
 
     if usuario:
-        return redirect("/api/documentos")
+        return redirect("/documentos")
     
     else:
         flash("Email ou senha incorreta")
