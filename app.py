@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, redirect, request, session, flash
 from model import control_user 
 from model import control_document
@@ -9,23 +8,33 @@ app = Flask(__name__)
 # CRIANDO CHAVE SECRETA
 app.secret_key = "8350e5a3e24c153df2275c9f80692773"
 
-
+# ROTAS PARA CARREGAR PÁGINAS
 
 #rota para a pagina principal
 @app.route("/")
-def index():
+def pag_login():
+
+    if 'id_usuario' in session:
+        itens = control_document.Control.exibir_itens()
+        return render_template("pages/home.html", itens=itens)
+    
     return render_template("pages/login.html")
-
-
 
 #rota para à pagina de cadastro
 @app.route("/logon")
 def logon():
     return render_template("pages/logon.html")
 
+#rota para a pagina onde é possivel ver os documentos cadastrados
+@app.route("/documentos")
+def documentos():
 
+    if 'id_usuario' not in session:
+        flash("Você precisa fazer login para acessar os documentos")
+        return redirect("/")
 
-
+    itens = control_document.Control.exibir_itens()
+    return render_template("pages/home.html", itens=itens)
 
 @app.route("/historico", methods=["GET"])
 def historico():
@@ -46,25 +55,6 @@ def historico():
     # Renderiza o template 'user_requests.html' com os dados encontrados
     return render_template("pages/user_requests.html", id_usuario_html=id_usuario_data)
 
-
-
-
-
-
-
-
-#rota para a pagina onde é possivel ver os documentos cadastrados
-@app.route("/api/documentos")
-def documentos():
-    if 'id_usuario' not in session:
-        flash("Você precisa fazer login para acessar os documentos")
-        return redirect("/")  # ou para onde estiver seu form de login
-
-    itens = control_document.Control.exibir_itens()
-    return render_template("pages/home.html", itens=itens)
-
-
-
 #rota para a pagina do documento escolhido para a solicitação
 @app.route("/document/<codigo>")
 def mostrar_documento(codigo):
@@ -81,9 +71,8 @@ def mostrar_documento(codigo):
     return render_template("pages/document.html", documento_html = documento, usuario_id = id_usuario)
 
 
-
 #rota para adicionar os pedidos nas tabelas do banco de dados, tanto no request quanto no historic
-@app.route("/document/pedido/<int:codigo>/<int:id_usuario>", methods=["POST"])
+@app.route("/api/document/pedido/<int:codigo>/<int:id_usuario>", methods=["POST"])
 def registrar_pedido(codigo, id_usuario):
     try:
         control_user.Usuario.pedido_user(codigo, id_usuario)
@@ -92,9 +81,10 @@ def registrar_pedido(codigo, id_usuario):
         return f"Erro ao registrar pedido: {str(e)}", 500
 
 
+# -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
 #rota para efetuar o cadastro do usuario na tabela do banco de dados (tb_user)
-@app.route("/post/logon", methods=["POST"])
+@app.route("/api/logon", methods=["POST"])
 def cadastro_user():
     nome = request.form.get("name")
     senha = request.form.get("password")
@@ -132,13 +122,16 @@ def efetuar_login():
     senha = request.form.get("password")
 
     if not validar_email(email):
+        flash("Email inválido.")
         return redirect("/")
 
-    if control_user.Usuario.login_user(email, senha):
+    usuario = control_user.Usuario.login_user(email, senha)
 
+    if usuario:
         return redirect("/api/documentos")
     
     else:
+        flash("Email ou senha incorrteto")
         return redirect("/")
 
 # [ --------- FIM DAS ROTAS --------- ] #

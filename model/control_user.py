@@ -30,7 +30,7 @@ class Usuario:
                 session['profile_type'] = resultado['profile_type']
                 return True
             else:
-                return False
+                return resultado
         except Exception as err:
             print(f"Erro no banco de dados: {err}")
             return False

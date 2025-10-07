@@ -32,6 +32,10 @@
         </p>
     </div>
 </section>
+<section class="row">
+    <input type="number" placeholder="Quantidade desejada">
+    <form action="/api/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
+
 
 <section class="document-request">
     <form action="/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
