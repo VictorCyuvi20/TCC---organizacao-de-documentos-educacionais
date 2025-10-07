@@ -71,16 +71,6 @@ def mostrar_documento(codigo):
     return render_template("pages/document.html", documento_html = documento, usuario_id = id_usuario)
 
 
-#rota para adicionar os pedidos nas tabelas do banco de dados, tanto no request quanto no historic
-@app.route("/api/document/pedido/<int:codigo>/<int:id_usuario>", methods=["POST"])
-def registrar_pedido(codigo, id_usuario):
-    try:
-        control_user.Usuario.pedido_user(codigo, id_usuario)
-        return "Pedido registrado com sucesso", 200
-    except Exception as e:
-        return f"Erro ao registrar pedido: {str(e)}", 500
-
-
 # -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
 #rota para efetuar o cadastro do usuario na tabela do banco de dados (tb_user)
@@ -131,8 +121,17 @@ def efetuar_login():
         return redirect("/api/documentos")
     
     else:
-        flash("Email ou senha incorrteto")
+        flash("Email ou senha incorreta")
         return redirect("/")
+
+#rota para adicionar os pedidos nas tabelas do banco de dados, tanto no request quanto no historic
+@app.route("/api/document/pedido/<int:codigo>/<int:id_usuario>", methods=["POST"])
+def registrar_pedido(codigo, id_usuario):
+    try:
+        control_user.Usuario.pedido_user(codigo, id_usuario)
+        return "Pedido registrado com sucesso", 200
+    except Exception as e:
+        return f"Erro ao registrar pedido: {str(e)}", 500
 
 # [ --------- FIM DAS ROTAS --------- ] #
 
