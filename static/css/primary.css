@@ -33,12 +33,7 @@ body{
     width: 100vw;
     max-width: 500px;
     min-height: 100vh;
-}
-
-.content{
-    width: 100%;
-
-    margin: 8px auto;
+    margin-bottom: 4rem;
 }
 
 .header{
@@ -49,6 +44,56 @@ body{
     gap: 0.4rem;
 
     padding: 0.8rem 0.6rem 0.6rem;
+}
+
+.content{
+    width: 100%;
+    margin-bottom: 4rem;
+
+    margin: 8px auto;
+}
+
+.navbar{
+    height: 4rem;
+    width: 100vw;
+    max-width: 500px;
+
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem;
+    gap: 0.4rem;
+    z-index: 20;
+}
+
+.navbar-option{
+    color: white;
+    border-radius: 0.6rem;
+    padding: 0.4rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    transition: color 0.08s background-color 0.08s;
+}
+
+.navbar-option:hover{
+    color: rgb(185, 100, 255);
+}
+
+.navbar-option.selected{
+    background-color: white;
+    color: black;
 }
 
 .header h1{
