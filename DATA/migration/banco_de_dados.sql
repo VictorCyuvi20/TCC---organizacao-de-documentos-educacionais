@@ -60,3 +60,8 @@ SELECT *
 FROM tb_user 
 INNER JOIN tb_request ON tb_user.id_user = tb_request.id_user 
 INNER JOIN tb_document ON tb_request.id_document = tb_document.id_document;
+
+ALTER TABLE tb_request ADD COLUMN requested_amount INT NOT NULL DEFAULT 1;
+
+
+

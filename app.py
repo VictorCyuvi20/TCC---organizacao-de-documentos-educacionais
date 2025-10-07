@@ -86,10 +86,9 @@ def adm_request():
     todas_solicitacoes = control_document.Control.exibir_todas_solicitacoes()
     return render_template("pages/adm_requests.html", solicitacoes_html=todas_solicitacoes)
 
-
-
-
-
+@app.route("/user_profile")
+def user_profile():
+    return render_template("pages/user_profile.html")
 
 # -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
@@ -183,6 +182,9 @@ def cancelar_pedido(id_request):
     except Exception as e:
         flash(f"Erro ao cancelar solicitação: {str(e)}", "error")
         return redirect("/historico")
+    
+
+
 
 
 
