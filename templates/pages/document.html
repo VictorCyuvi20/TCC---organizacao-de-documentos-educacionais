@@ -1,26 +1,44 @@
-{% extends "bases/secondary.html" %}
+{% extends "bases/main.html" %}
 {% block title %}Material Didádico{% endblock %}
 
-{% block sectiontitle %}
- {{documento_html.name}}
-{% endblock %}
+{% block sectiontitle %}{{ documento_html.name }}{% endblock %}
 
 {% block content %}
-<section>
-    <span class="col s12 grey-text text-darken-1">Quantidade em estoque:{{documento_html.amount}}</span>
-    <div class="row">
-        <img src="{{documento_html.image}}" alt="imagem do documento">
-        <p></p>
+
+<style>
+    .request-form{
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+    }
+
+    .document-description{
+        text-align: start;
+    }
+
+    .document-description > p{
+        margin-top: 0;
+        margin-bottom: 1px;
+    }
+</style>
+
+<section class="document-info center">
+    <p class="grey-text text-darken-1 outline section-padding fs-2">Quantidade em estoque: {{documento_html.amount}}</p>
+    <img class="hundred-width" src="{{documento_html.image}}" alt="imagem do documento">
+    <div class="document-description section-padding outline">
+        <span class="grey-text text-darken-1 fs-2">Descrição:</span>
+        <p class="fs-2">
+            {{ documento_html.doc_description }}
+        </p>
     </div>
 </section>
-<section class="row">
-    <input type="number" placeholder="Quantidade desejada">
-    <form action="/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
 
-        <button type="submit" class="btn waves-effect grey darken-1 col s12">
-            Solicitar material
-        </button>
+<section class="document-request">
+    <form action="/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
+        <div class="request-form section-padding outline">
+            <input type="number" placeholder="Quantidade desejada" name="quantity">
+            <button type="submit" class="btn waves-effect grey darken-1">Solicitar material</button>
+        </div>
     </form>
-    
 </section>
 {% endblock %}
