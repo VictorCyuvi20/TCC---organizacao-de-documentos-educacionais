@@ -1,0 +1,16 @@
+:root {
+    --primary: #3C60A7;
+    --secondary: #1E3A5F;
+    --accent: #F59E0B;
+    --bg-light: #F8FAFC;
+    --text-dark: #1E293B;
+}
+/* 
+Cor,Nome/Propósito,HEX,RGB,CMYK,Uso Sugerido no Website
+Primária,Azul SENAI (Principal),#3C60A7,"60, 96, 167","100, 60, 0, 0","Cabeçalhos, navegação principal, botões de ação (ex: ""Inscreva-se""). Transmite confiança."
+Secundária,Azul Escuro (Suporte),#1E3A5F,"30, 58, 95","100, 70, 20, 40","Fundos de seções, rodapé, texto em destaque. Para profundidade."
+Acento,Laranja Suave (Energia),#F59E0B,"245, 158, 11","0, 50, 100, 0","Chamadas para ação (CTAs), ícones, links hover. Adiciona vitalidade sem sobrecarregar (inspirado em detalhes regionais do SENAI)."
+Neutro Claro,Cinza Claro (Fundo),#F8FAFC,"248, 250, 252","0, 0, 0, 0","Fundo principal da página, cards. Garante legibilidade."
+Neutro Médio,Cinza Médio (Texto),#64748B,"100, 116, 139","50, 30, 20, 10","Texto corpo, legendas. Contraste bom com fundos claros."
+Neutro Escuro,Cinza Escuro (Alta Hierarquia),#1E293B,"30, 41, 59","80, 50, 30, 60","Títulos secundários, bordas. Para ênfase sem dominar."
+Branco,Branco Puro (Contraste),#FFFFFF,"255, 255, 255","0, 0, 0, 0","Textos sobre fundos escuros, espaçamentos. Base do manual SENAI." */
