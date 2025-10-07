@@ -4,28 +4,94 @@
 {% block sectiontitle %}Suas Informações{% endblock %}
 
 {% block content %}
+    <style>
+        .card-panel
+        {
+            width: 95%;
+
+            display: grid;
+            grid-template-columns: 2;
+
+            margin-left: 10px;
+        }
+
+        form
+        {
+            grid-area: 1/2/1/2;
+
+            display: grid;
+            grid-template-columns: 2;
+            grid-template-rows: 3;
+        }
+
+        .span_nome
+        {
+            grid-column: 1/2;
+            grid-row: 1/2;
+        }
+
+        .span_email
+        {
+            grid-column: 1/2;
+            grid-row: 2/2;
+        }
+
+        .logout
+        {
+            grid-column: 1/1;
+            grid-row: 3/3;
+
+            margin-bottom: 20px;
+        }
+
+        .buttom_arquivos_e_historico
+        {
+            width: 220px;
+            margin-right: 5px;
+        }
+    </style>
+
         <div class="card-panel center">
-            <img src="https://cdn-icons-png.flaticon.com/128/5393/5393061.png" alt="" class="responsive-img ">
+
+            <img src="https://cdn-icons-png.flaticon.com/128/5393/5393061.png" alt="" class="responsive-img">
+
+            <form action="">
+
+                <span class="span_nome">Nome:</span>
+                <span class="span_email">E-mail:</span>
+
+                <a class="waves-effect waves-light btn logout">Logout</a>
+            </form>
+             
+        </div>
+
+        <div class="center">
+
+            
+
         </div>
 
         <div class="row center">
-            <a class="waves-effect waves-light btn center">Meus Arquivos</a>
-            <a class="waves-effect waves-light btn center">Histórico de Arquivos</a>
+
+            <a class="waves-effect waves-light btn buttom_arquivos_e_historico">Meus Arquivos</a>
+
+            <a class="waves-effect waves-light btn buttom_arquivos_e_historico" >Histórico de Arquivos</a>
+
         </div>
 
         <section class="documents">
 
-            <div class="document-card s6">
-                <img class="doc-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vWDMnc77GCB-iZeXiLU4vdikYlEhfFvfw3U23StHsnU3zYaWKONcltqcj1Upqfn9_o0&usqp=CAU" alt="">
+            <div class="document-card s6" style="display: grid; grid-column: auto;">
+                <img class="doc-img" style="grid-area: 1 / 2 / 1 / 3;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vWDMnc77GCB-iZeXiLU4vdikYlEhfFvfw3U23StHsnU3zYaWKONcltqcj1Upqfn9_o0&usqp=CAU" alt="">
 
-                <a href="" class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</a>
+                <a href="" class="doc-details btn waves-effect grey darken-1" style="margin-top: 20px;" type="submit" name="action">Ver detalhes</a>
 
             </div>
 
             <div class="document-card center-align s6">
-                <img class="doc-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vWDMnc77GCB-iZeXiLU4vdikYlEhfFvfw3U23StHsnU3zYaWKONcltqcj1Upqfn9_o0&usqp=CAU" alt="">
+                <img class="doc-img" style="grid-area: 1 / 2 / 1 / 3;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vWDMnc77GCB-iZeXiLU4vdikYlEhfFvfw3U23StHsnU3zYaWKONcltqcj1Upqfn9_o0&usqp=CAU" alt="">
                 
-                <a href="" class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</a>
+                <a href="" class="doc-details btn waves-effect grey darken-1" style="margin-top: 20px;"  type="submit" name="action">Ver detalhes</a>
 
             </div>
         </section>
