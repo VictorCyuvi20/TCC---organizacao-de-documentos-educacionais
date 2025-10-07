@@ -6,29 +6,49 @@ Cadastrar Documento
 {% endblock %}
 
 {% block content %}
+<style>
+    /* define as margens dos inputs do form */
+    .input-margin{
+        margin-top: 12px;
+    }
+
+    /* remove as setas de números do input number */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield;
+    }
+</style>
     <form action="">
         <div class="row">
 
             <div class="input-field col s12">
-                <input type="text" id="name" style="margin-top: 12px;">
-                <label for="name" style="margin-top: 12px;">Nome do documento</label>
+                <input type="text" id="name" class="input-margin">
+                <label for="name" class="input-margin">Nome do documento</label>
             </div>
+
             <div class="input-field col s12">
-                <input type="number" id="quantity" style="margin-top: 12px;" min="0">
-                <label for="quantity" class="active" style="margin-top: 12px;">Quantidade em estoque</label>  
+                <input type="number" id="quantity" min="0" class="input-margin">
+                <label for="quantity" class="active input-margin">Quantidade em estoque</label>  
             </div>
+
             <div class="input-field col s12">
-                <textarea class="materialize-textarea" id="doc_description" style="resize: none; margin-top: 12px;"></textarea>
-                <label for="doc_description" style="margin-top: 12px;">Descrição do Documento</label>
+                <textarea class="materialize-textarea" id="doc_description"></textarea>
+                <label for="doc_description" class="input-margin">Descrição do Documento</label>
             </div>
         </div>  
+
         <div class="center-align" style="margin-top: -18px;">
             <input style="display: none;" type="file" id="file-upload">
-            <label for="file-upload" class="btn waves-effect grey darken-1 col s12">Escolher Arquivo</label>
-            <span href="#" class="col s12 grey-text text-darken-1" style="margin-left: 8px;">Documento.pdf</span>
+            <label for="file-upload" class="btn waves-effect grey darken-1 col s6">Escolher Arquivo</label>
+            <span href="#" class="col s6 grey-text text-darken-1" style="margin-left: 8px;">Documento.pdf</span>
         </div>
     </form>
     <div class="center-align">
-        <button type="submit" class="btn waves-effect grey darken-1 col s12" style="width: 200px; margin-top: 30px;">Cadastrar</button>
+        <button type="submit" class="btn waves-effect grey darken-1 col s12" style="width: 200px; margin-top: 50px;">Cadastrar</button>
     </div>
 {% endblock %}
