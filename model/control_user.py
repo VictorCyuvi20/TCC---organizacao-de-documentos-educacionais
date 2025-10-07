@@ -73,19 +73,108 @@ class Usuario:
             except:
                 pass
 
-    def pedido_user(codigo, id_usuario):
+    @staticmethod
+    def pedido_user(codigo, id_usuario, quantidade):
         cx_db = Conexao.cria_conexao()
         mycursor = cx_db.cursor()
 
-        sql = """INSERT INTO tb_historic (id_user, id_document) VALUES (%s, %s)"""
+        try:
+            # Verifica o estoque atual
+            sql_estoque = "SELECT amount FROM tb_document WHERE id_document = %s"
+            mycursor.execute(sql_estoque, (codigo,))
+            resultado = mycursor.fetchone()
 
-        sql2 = """INSERT INTO tb_request (id_user, id_document) VALUES (%s, %s)"""
+            if resultado is None:
+                raise Exception("Documento não encontrado.")
 
-        mycursor.execute(sql, (id_usuario, codigo))
-        mycursor.execute(sql2, (id_usuario, codigo))
+            estoque_atual = resultado[0]
 
+            if quantidade > estoque_atual:
+                raise Exception("Quantidade solicitada maior do que o disponível em estoque.")
+
+            # Registra nos históricos e pedidos
+            sql_historico = """INSERT INTO tb_historic (id_user, id_document) VALUES (%s, %s)"""
+            sql_request = """INSERT INTO tb_request (id_user, id_document, requested_amount) VALUES (%s, %s, %s)"""
+            mycursor.execute(sql_historico, (id_usuario, codigo))
+            mycursor.execute(sql_request, (id_usuario, codigo, quantidade))
+
+            # Atualiza estoque
+            novo_estoque = estoque_atual - quantidade
+            sql_update_estoque = """UPDATE tb_document SET amount = %s WHERE id_document = %s"""
+            mycursor.execute(sql_update_estoque, (novo_estoque, codigo))
+
+            cx_db.commit()
+
+        except Exception as erro:
+            cx_db.rollback()
+            raise erro
+
+        finally:
+            mycursor.close()
+            cx_db.close()
+
+
+    @staticmethod
+    def aprovar_pedido(id_request):
+        cx_db = Conexao.cria_conexao()
+        mycursor = cx_db.cursor()
+
+        sql = "UPDATE tb_request SET status = 'aprovado' WHERE id_request = %s"
+        mycursor.execute(sql, (id_request,))
         cx_db.commit()
 
         mycursor.close()
         cx_db.close()
+
+
+    @staticmethod
+    def cancelar_pedido(id_request):
+        cx_db = Conexao.cria_conexao()
+        mycursor = cx_db.cursor()
+
+        try:
+            # 1. Buscar dados da solicitação
+            sql_select = """SELECT id_document, requested_amount FROM tb_request WHERE id_request = %s"""
+            mycursor.execute(sql_select, (id_request,))
+            resultado = mycursor.fetchone()
+
+            if not resultado:
+                raise Exception("Solicitação não encontrada.")
+
+            id_document = resultado[0]
+            quantidade = resultado[1]
+
+            # 2. Atualizar o estoque somando de volta a quantidade
+            sql_update = """UPDATE tb_document SET amount = amount + %s WHERE id_document = %s"""
+            mycursor.execute(sql_update, (quantidade, id_document))
+
+            # 3. Deletar a solicitação da tabela tb_request
+            sql_delete = """DELETE FROM tb_request WHERE id_request = %s"""
+            mycursor.execute(sql_delete, (id_request,))
+
+            cx_db.commit()
+
+        except Exception as e:
+            cx_db.rollback()
+            raise e
+
+        finally:
+            mycursor.close()
+            cx_db.close()
+
+    @staticmethod
+    def buscar_tipo_usuario(email):
+        cx_db = Conexao.cria_conexao()
+        mycursor = cx_db.cursor()
+
+        sql = "SELECT profile_type FROM tb_user WHERE email = %s"
+        mycursor.execute(sql, (email,))
+        resultado = mycursor.fetchone()
+
+        mycursor.close()
+        cx_db.close()
+
+        if resultado:
+            return resultado[0]
+        return None
 

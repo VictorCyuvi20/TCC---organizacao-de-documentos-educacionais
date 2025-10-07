@@ -19,9 +19,14 @@
         <img class="doc-img" src="{{ item_historico.image }}" alt="">
 
         <h3 class="doc-title fs-4">{{ item_historico.document_name }}</h3>
+        <p class="grey-text text-darken-1">Quantidade solicitada: {{ item_historico.requested_amount }}</p>
+
 
         <span class="doc-desc-label"></span>
-        <button class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Cancelar</button>
+        <form method="POST" action="/api/request/cancelar/{{ item_historico.id_request }}">
+          <button class="doc-details btn waves-effect grey darken-1" type="submit">Cancelar</button>
+        </form>
+
     </div>
    {% endfor %}
   {% else %}

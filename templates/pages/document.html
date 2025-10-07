@@ -40,10 +40,9 @@
 
 <!-- Seção que está declarando a quantidade que o usuário necessita junto com o botão de soliciar material -->
 <section class="document-request">
-  <!-- Formulário com o botão para a solicitação do material. -->
-    <form action="/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
+    <form action="/api/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
         <div class="request-form section-padding outline">
-            <input type="number" placeholder="Quantidade desejada" name="quantity">
+            <input type="number" placeholder="Quantidade desejada" name="quantity" max="{{ documento_html.amount}}">
             <!-- Botão Enviar -->
             <button type="submit" class="btn waves-effect grey darken-1">Solicitar material</button>
         </div>

@@ -70,6 +70,26 @@ def mostrar_documento(codigo):
     
     return render_template("pages/document.html", documento_html = documento, usuario_id = id_usuario)
 
+@app.route("/adm_request")
+def adm_request():
+    # Verifica se o usuário está logado
+    if 'id_usuario' not in session:
+        flash("Você precisa estar logado para acessar essa página.", "error")
+        return redirect("/")
+
+    # Verifica se é administrador
+    if session.get('profile_type') != 'master':
+        flash("Acesso negado: você não tem permissão para acessar essa página.", "error")
+        return redirect("/documentos")
+
+    # Usuário é master → carrega solicitações
+    todas_solicitacoes = control_document.Control.exibir_todas_solicitacoes()
+    return render_template("pages/adm_requests.html", solicitacoes_html=todas_solicitacoes)
+
+
+
+
+
 
 # -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
@@ -128,10 +148,43 @@ def efetuar_login():
 @app.route("/api/document/pedido/<int:codigo>/<int:id_usuario>", methods=["POST"])
 def registrar_pedido(codigo, id_usuario):
     try:
-        control_user.Usuario.pedido_user(codigo, id_usuario)
-        return "Pedido registrado com sucesso", 200
+        quantidade = int(request.form.get("quantity"))
+
+        if quantidade < 1:
+            flash("Quantidade inválida.", "error")
+            return redirect(f"/document/{codigo}")
+
+        control_user.Usuario.pedido_user(codigo, id_usuario, quantidade)
+
+        flash("Pedido enviado ao administrador.", "success")
+        return redirect("/historico")
+
     except Exception as e:
-        return f"Erro ao registrar pedido: {str(e)}", 500
+        flash(f"Erro ao registrar pedido: {str(e)}", "error")
+        return redirect("/documentos")
+
+    
+@app.route("/api/request/aprovar/<int:id_request>", methods=["POST"])
+def aprovar_solicitacao(id_request):
+    try:
+        control_user.Usuario.aprovar_pedido(id_request)
+        flash("Solicitação aprovada com sucesso!", "success")
+        return redirect("/adm_request")
+    except Exception as e:
+        flash(f"Erro ao aprovar solicitação: {str(e)}", "error")
+        return redirect("/adm_request")
+
+@app.route("/api/request/cancelar/<int:id_request>", methods=["POST"])
+def cancelar_pedido(id_request):
+    try:
+        control_user.Usuario.cancelar_pedido(id_request)
+        flash("Solicitação cancelada com sucesso.", "success")
+        return redirect("/historico")
+    except Exception as e:
+        flash(f"Erro ao cancelar solicitação: {str(e)}", "error")
+        return redirect("/historico")
+
+
 
 # [ --------- FIM DAS ROTAS --------- ] #
 
