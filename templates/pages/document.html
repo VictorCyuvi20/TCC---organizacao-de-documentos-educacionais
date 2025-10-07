@@ -1,10 +1,10 @@
-{% extends "bases/main.html" %}
+<!-- O comando abaixo está realizando a implantação da formatação padrão das páginas, adicionando junto dela os títulos e subtítulos para uma leitura melhor. -->
+{% extends "bases/secondary.html" %}
 {% block title %}Material Didádico{% endblock %}
 
 {% block sectiontitle %}{{ documento_html.name }}{% endblock %}
 
 {% block content %}
-
 <style>
     .request-form{
         display: flex;
@@ -21,26 +21,30 @@
         margin-bottom: 1px;
     }
 </style>
-
+      
+<!-- Nessa seção está mostrando a quantidade que há no estoque, imagem do documeno junto da seção mostra també a imgem e um pouco da descrição do livro -->
 <section class="document-info center">
+    <!-- Quantidade que está no estoque -->
     <p class="grey-text text-darken-1 outline section-padding fs-2">Quantidade em estoque: {{documento_html.amount}}</p>
+    <!-- Imagem do documento  -->
     <img class="hundred-width" src="{{documento_html.image}}" alt="imagem do documento">
+    <!-- Aqui está uma preparação para o envio do documento-->
     <div class="document-description section-padding outline">
         <span class="grey-text text-darken-1 fs-2">Descrição:</span>
+        <!-- Descrição do documeto -->
         <p class="fs-2">
             {{ documento_html.doc_description }}
         </p>
     </div>
 </section>
-<section class="row">
-    <input type="number" placeholder="Quantidade desejada">
-    <form action="/api/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
 
-
+<!-- Seção que está declarando a quantidade que o usuário necessita junto com o botão de soliciar material -->
 <section class="document-request">
+  <!-- Formulário com o botão para a solicitação do material. -->
     <form action="/document/pedido/{{ documento_html['id_document'] }}/{{ usuario_id }}" method="POST">
         <div class="request-form section-padding outline">
             <input type="number" placeholder="Quantidade desejada" name="quantity">
+            <!-- Botão Enviar -->
             <button type="submit" class="btn waves-effect grey darken-1">Solicitar material</button>
         </div>
     </form>
