@@ -51,9 +51,9 @@ INSERT INTO tb_user (name, password, email, profile_type) VALUES ("zacajaca21", 
 INSERT INTO tb_user (name, password, email, profile_type) VALUES ("zacajaca22", "12345678", "seuemail2@gmail.com", "common");
 INSERT INTO tb_user (name, password, email, profile_type) VALUES ("zacajaca23", "12345678", "seuemail3@gmail.com", "common");
 
-INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("prova de matematica", "Esta prova possui 10 questões sobre matemática avançada", "matematica", "../../static/images/imagem_exemplo1.jpg", 10);
-INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("prova de quimica", "Esta prova possui 10 questões sobre química avançada", "quimica", "../../static/images/imagem_exemplo3.jpg", 15);
-INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("prova de biologia", "Esta prova possui 10 questões sobre biologia avançada", "biologia", "../../static/images/imagem_exemplo3.jpg", 20);
+INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("Prova de Matemática", "Esta prova possui 10 questões sobre matemática avançada", "matematica", "../../static/images/imagem_exemplo1.jpg", 10);
+INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("Prova de Química", "Esta prova possui 10 questões sobre química avançada", "quimica", "../../static/images/imagem_exemplo3.jpg", 15);
+INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("Prova de Biologia", "Esta prova possui 10 questões sobre biologia avançada", "biologia", "../../static/images/imagem_exemplo3.jpg", 20);
 
 -- Corrigindo a junção entre as tabelas
 SELECT * 
