@@ -52,7 +52,7 @@ INSERT INTO tb_user (name, password, email, profile_type) VALUES ("zacajaca22", 
 INSERT INTO tb_user (name, password, email, profile_type) VALUES ("zacajaca23", "12345678", "seuemail3@gmail.com", "common");
 
 INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("Prova de Matemática", "Esta prova possui 10 questões sobre matemática avançada", "matematica", "../../static/images/imagem_exemplo1.jpg", 10);
-INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("Prova de Química", "Esta prova possui 10 questões sobre química avançada", "quimica", "../../static/images/imagem_exemplo3.jpg", 15);
+INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("Prova de Química", "Esta prova possui 10 questões sobre química avançada", "quimica", "../../static/images/imagem_exemplo2.jpg", 15);
 INSERT INTO tb_document (name, doc_description, category, image, amount) VALUES ("Prova de Biologia", "Esta prova possui 10 questões sobre biologia avançada", "biologia", "../../static/images/imagem_exemplo3.jpg", 20);
 
 -- Corrigindo a junção entre as tabelas
@@ -62,6 +62,3 @@ INNER JOIN tb_request ON tb_user.id_user = tb_request.id_user
 INNER JOIN tb_document ON tb_request.id_document = tb_document.id_document;
 
 ALTER TABLE tb_request ADD COLUMN requested_amount INT NOT NULL DEFAULT 1;
-
-
-
