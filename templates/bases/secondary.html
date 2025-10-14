@@ -21,6 +21,10 @@
 
   <!-- IMPORTANDO SCRIPTS LOCAIS -->
   <script defer src="{{ url_for('static',filename='js/materialize.js') }}"></script>
+  <script defer src="{{ url_for('static',filename='js/global.js') }}"></script>
+
+  <!-- FAVICON, ATUALIZANDO DINÂMICAMENTE PELO 'js/global.js' -->
+  <link id="favicon" rel="icon" type="image/png" href="{{ url_for('static',filename='images/logo/black-notext48x48.png') }}">
 
   {% endblock %}
 </head>
