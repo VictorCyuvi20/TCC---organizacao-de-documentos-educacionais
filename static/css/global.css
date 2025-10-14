@@ -14,23 +14,27 @@ button:hover{
 }
 
 
-#goback{
+#goback, .header-button, .header-button:focus{
     background-color: rgba(1, 1, 1, 0);
-    border: none;
     border-radius: 50%;
     transition: background-color 0.45s;
 
     color: #000;
     box-shadow: none;
+    border: none;
     width: 36px;
 
     padding: 0;
 }
 
-#goback:hover{
+#goback:hover, .header-button:hover{
     background-color: rgba(1, 1, 1, 0.1);
+    box-shadow: none;
+    border: none;
 }
 
-#goback:active{
+#goback:active, .header-button:active{
     background-color: rgba(1, 1, 1, 0.05);
+    box-shadow: none;
+    border: none;
 }

@@ -1,99 +1,98 @@
 {% extends "bases/main.html" %}
-{% block title %}Página Inicial{% endblock %}
+{% block title %}Perfil{% endblock %}
 
-{% block sectiontitle %}Suas Informações{% endblock %}
+{% block sectiontitle %}Perfil{% endblock %}
+
+{% block headeroptions %}<button id="gotopreferences" class="btn header-button"><i class="fa-solid fa-bars"></i></button>{% endblock %}
 
 {% block content %}
-    <style>
-        .card-panel
-        {
-            width: 95%;
 
-            display: grid;
-            grid-template-columns: 2;
+<style>
+    .user-info-container{
+        height: 13rem;
+        width: 100%;
 
-            margin-left: 10px;
-        }
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        text-align: center;
+    }
 
-        form
-        {
-            grid-area: 1/2/1/2;
+    .user-info{
+        width: 35%;
+    }
 
-            display: grid;
-            grid-template-columns: 2;
-            grid-template-rows: 3;
-        }
+    .profile-picture{
+        width: 75%;
+        border-radius: 100%;
+    }
 
-        .span_nome
-        {
-            grid-column: 1/2;
-            grid-row: 1/2;
-        }
+    .profile-nav{
+        height: 2.5rem;
+        margin-top: 1px;
 
-        .span_email
-        {
-            grid-column: 1/2;
-            grid-row: 2/2;
-        }
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    }
 
-        .logout
-        {
-            grid-column: 1/1;
-            grid-row: 3/3;
+    .nav-option{
+        border: none;
+        background-color: white;
 
-            margin-bottom: 20px;
-        }
+        transition: background-color 0.15s;
+    }
 
-        .buttom_arquivos_e_historico
-        {
-            width: 220px;
-            margin-right: 5px;
-        }
-    </style>
+    .nav-option:hover{
+        background-color: rgba(0,0,0,0.1);
+    }
 
-        <div class="card-panel center">
+    .nav-option:active{
+        background-color: rgba(0,0,0,0.15);
+    }
+</style>
 
-            <img src="https://cdn-icons-png.flaticon.com/128/5393/5393061.png" alt="" class="responsive-img">
+<script defer>
+    const gotopreferences = document.querySelector('#gotopreferences');
+    if (gotopreferences){
+        gotopreferences.addEventListener('click', function(){
+        window.location.pathname = '/preferencias' 
+    })}
+</script>
 
-            <form action="">
-
-                <span class="span_nome">Nome:</span>
-                <span class="span_email">E-mail:</span>
-                <!-- leva para a rota que efetua o logout -->
-                <a href="/api/logout" class="waves-effect waves-light btn logout">Logout</a>
-            </form>
-             
+<div class="profile">
+    <section class="user-info-container outline">
+        <div class="user-info">
+            <h2 class="fs-4">Seu Nome Aqui</h2>
+            <img class="profile-picture" src="https://openclipart.org/image/800px/346569" alt="Foto de Perfil">
         </div>
+    </section>
 
-        <div class="center">
+    <section class="profile-nav">
+        <button class="nav-option outline fs-2">Documentos</button>
+        <button class="nav-option outline fs-2">Solicitações</button>
+    </section>
 
-            
-
+    <section class="documents">
+        <div class="document-card">
+            <!-- Imagem do documento. -->
+            <img class="doc-img" src="http://10.110.134.24:8080/static/images/imagem_exemplo1.jpg" alt="">
+    
+            <!-- Título do documento. -->
+            <h3 class="doc-title fs-4">Lorem Ipsum</h3>
+    
+            <!-- Quantidade no estoque. -->
+            <span class="doc-amount">Quantidade em Estoque: 1298</span>
+    
+            <!-- Descrição do documento. -->
+            <span class="doc-desc-label">Descrição</span>
+    
+            <!-- Ver detalhes. -->
+            <p class="doc-desc">Um maravilhoso material didático</p>
+                <a href="" class="doc-details btn waves-effect grey darken-1" type="submit" name="action">Ver detalhes</a>
+    
         </div>
-
-        <div class="row center">
-
-            <a class="waves-effect waves-light btn buttom_arquivos_e_historico">Meus Arquivos</a>
-
-            <a href="/historico" class="waves-effect waves-light btn buttom_arquivos_e_historico" >Histórico de Arquivos</a>
-
-        </div>
-
-        <section class="documents">
-
-            <div class="document-card s6" style="display: grid; grid-column: auto;">
-                <img class="doc-img" style="grid-area: 1 / 2 / 1 / 3;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vWDMnc77GCB-iZeXiLU4vdikYlEhfFvfw3U23StHsnU3zYaWKONcltqcj1Upqfn9_o0&usqp=CAU" alt="">
-
-                <a href="" class="doc-details btn waves-effect grey darken-1" style="margin-top: 20px;" type="submit" name="action">Ver detalhes</a>
-
-            </div>
-
-            <div class="document-card center-align s6">
-                <img class="doc-img" style="grid-area: 1 / 2 / 1 / 3;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vWDMnc77GCB-iZeXiLU4vdikYlEhfFvfw3U23StHsnU3zYaWKONcltqcj1Upqfn9_o0&usqp=CAU" alt="">
-                
-                <a href="" class="doc-details btn waves-effect grey darken-1" style="margin-top: 20px;"  type="submit" name="action">Ver detalhes</a>
-
-            </div>
-        </section>
+    </section>
+</div>
+    
 
 {% endblock %}
