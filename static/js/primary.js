@@ -5,12 +5,11 @@ document.addEventListener('DOMContentLoaded', function(){
     if (goBackButton){
         if (document.URL.at(-1) === '/'){
             goBackButton.style.display = 'none';
-            return;
-        };
-
-        goBackButton.addEventListener('click', function(){
-            window.history.back();
-        });
+        }else{
+            goBackButton.addEventListener('click', function(){
+                window.history.back();
+            });
+        }
     };
 
     navButtons.forEach(button => {
