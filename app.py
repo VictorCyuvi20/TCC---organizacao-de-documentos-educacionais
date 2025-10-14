@@ -112,6 +112,10 @@ def user_profile():
 def atividade():
     return render_template("pages/atividade.html")
 
+@app.route("/preferencias")
+def preferences():
+    return render_template("pages/preferences.html")
+
 # -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
 #rota para efetuar o cadastro do usuario na tabela do banco de dados (tb_user)
