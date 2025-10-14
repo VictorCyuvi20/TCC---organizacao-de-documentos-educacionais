@@ -115,16 +115,39 @@ class Usuario:
 
 
     @staticmethod
+    
     def aprovar_pedido(id_request):
         cx_db = Conexao.cria_conexao()
         mycursor = cx_db.cursor()
 
         sql = "UPDATE tb_request SET status = 'aprovado' WHERE id_request = %s"
+
         mycursor.execute(sql, (id_request,))
+        cx_db.commit()
+
+        sql2 = "INSERT INTO tb_notification (id_user, id_document) SELECT id_user, id_document FROM tb_request"
+        
+        mycursor.execute(sql2,)
         cx_db.commit()
 
         mycursor.close()
         cx_db.close()
+        
+    @staticmethod
+    def notification():
+        cx_db = Conexao.cria_conexao()
+        mycursor = cx_db.cursor()
+
+        sql = "SELECT * FROM tb_notification"
+
+        mycursor.execute(sql,)
+
+        resultado = mycursor.fetchall()
+
+        mycursor.close()
+        cx_db.close()
+
+        return resultado
 
 
     @staticmethod
