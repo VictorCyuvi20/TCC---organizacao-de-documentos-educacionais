@@ -87,8 +87,26 @@ def adm_request():
     return render_template("pages/adm_requests.html", solicitacoes_html=todas_solicitacoes)
 
 @app.route("/user_profile")
+def logout():
+    #verificação para garantir que tenha algum usario na sessão
+
+    #caso não tenha usuario na sessão, ele ira diretamente para a pagina de login
+    if session == {}:
+        return redirect("/")
+    
+    #caso tenha usuario na sessão, ele ira mostrar a pagina nomalmente
+    else:
+        return render_template("pages/user_profile.html")
+    
+
+#rota para que o usuario possa fazer o logout da conta
+@app.route("/api/logout")
 def user_profile():
-    return render_template("pages/user_profile.html")
+    #assim que o usuario logado entrar na rota a sessão sera limpada
+    session.clear()
+    #o usuario ira para a pagina de login
+    return redirect("/")
+
 
 # -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
