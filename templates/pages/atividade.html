@@ -1,0 +1,56 @@
+{% extends "bases/main.html" %}
+{% block title %}Notificações{% endblock %}
+
+{% block sectiontitle %}Notificações{% endblock %}
+
+{% block content %}
+<style>
+    .notification-card{
+        background-color: rgba(0,0,0,0.02);
+        margin: 1px 0;
+        margin-top: 0;
+        padding: 1em 1rem;
+
+        display: flex;
+    }
+
+    .notification-card .notify-icon{
+        width: 4.75rem;
+        height: 4.75rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0,0,0,0.2);
+        color: white;
+        border-radius: 100%;
+
+        font-size: 2.5rem;
+    }
+
+    .notify-content{
+        margin-top: 0.2rem;
+        display: flex;
+        justify-items: start;
+        align-items: start;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .notification-card .notify-title,
+    .notification-card .notify-desc{
+        margin: 0;
+        padding-left: 0.8rem;
+    }
+</style>
+      
+<section class="notifications">
+    <div class="notification-card outline">
+        <div class="notify-icon"> <i class="fa-solid fa-bell notify-icon"></i> </div>
+        <div class="notify-content">
+            <h3 class="notify-title fs-4">Notificação</h3>
+            <p class="notify-desc fs-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque dolore nemo ad! Quos, quasi ad corporis quo recusandae non repellendus, nobis saepe eligendi aperiam nam cum! Placeat facere blanditiis autem.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
