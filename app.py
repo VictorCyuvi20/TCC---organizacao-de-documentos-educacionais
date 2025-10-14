@@ -90,6 +90,10 @@ def adm_request():
 def user_profile():
     return render_template("pages/user_profile.html")
 
+@app.route("/atividade")
+def atividade():
+    return render_template("pages/atividade.html")
+
 # -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
 #rota para efetuar o cadastro do usuario na tabela do banco de dados (tb_user)
