@@ -45,12 +45,14 @@
 </style>
       
 <section class="notifications">
+{% for noti in notification %}
     <div class="notification-card outline">
         <div class="notify-icon"> <i class="fa-solid fa-bell notify-icon"></i> </div>
         <div class="notify-content">
             <h3 class="notify-title fs-4">Notificação</h3>
-            <p class="notify-desc fs-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque dolore nemo ad! Quos, quasi ad corporis quo recusandae non repellendus, nobis saepe eligendi aperiam nam cum! Placeat facere blanditiis autem.</p>
+            <p class="notify-desc fs-2">: {{noti.id_notification}}</p>
         </div>
     </div>
+{% endfor %}
 </section>
 {% endblock %}

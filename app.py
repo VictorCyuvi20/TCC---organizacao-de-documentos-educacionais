@@ -110,7 +110,9 @@ def user_profile():
 
 @app.route("/atividade")
 def atividade():
-    return render_template("pages/atividade.html")
+    #pegando as notificações após o adm aprovar o documento
+    notification = control_user.Usuario.notification()
+    return render_template("pages/atividade.html", notification = notification)
 
 # -------------ROTAS QUE PRECISAM CARREGAR ALGO-------------
 
