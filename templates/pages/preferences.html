@@ -1,0 +1,43 @@
+{% extends "bases/main.html" %}
+{% block title %}Preferências{% endblock %}
+
+{% block sectiontitle %}Preferências{% endblock %}
+
+{% block content %}
+
+<style>
+    .preferences{
+        display: flex;
+        align-items: start;
+        justify-content: center;
+
+
+    }
+
+    .preferences a{
+        padding: 0.35rem 0;
+        width: 100%;
+        background-color: white;
+
+        transition: background-color 0.15s;
+    }
+
+    .preferences a:hover{
+        background-color: rgba(0,0,0,0.1);
+    }
+
+    .preferences a:active{
+        background-color: rgba(0,0,0,0.15);
+    }
+
+    .red-font{
+        color: red;
+    }
+</style>
+
+<div class="preferences outline center">
+    <a href="/api/logout" class="red-font fs-2">Encerrar Sessão</a>
+</div>
+    
+
+{% endblock %}

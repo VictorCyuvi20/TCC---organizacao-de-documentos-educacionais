@@ -3,7 +3,7 @@
 
 {% block sectiontitle %}Perfil{% endblock %}
 
-{% block headeroptions %}<button class="btn header-button"><i class="fa-solid fa-bars"></i></button>{% endblock %}
+{% block headeroptions %}<button id="gotopreferences" class="btn header-button"><i class="fa-solid fa-bars"></i></button>{% endblock %}
 
 {% block content %}
 
@@ -50,6 +50,14 @@
         background-color: rgba(0,0,0,0.15);
     }
 </style>
+
+<script defer>
+    const gotopreferences = document.querySelector('#gotopreferences');
+    if (gotopreferences){
+        gotopreferences.addEventListener('click', function(){
+        window.location.pathname = '/preferencias' 
+    })}
+</script>
 
 <div class="profile">
     <section class="user-info-container outline">
